@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Card = (props) => (
-    <div> 
+    <div style={{
+      backgroundColor: 'white'
+    }}> 
       <h4>{props.title}</h4> 
       <div>
         {props.description} 
