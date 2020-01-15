@@ -1,0 +1,12 @@
+{
+  "name": "Capstone",
+  "version": "1.0.0",
+  "description": "NextThought Plugin system",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
