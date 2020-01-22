@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from './components/Card'
-import Frame from 'react-frame-component';
 
 
 const REQ_URL = 'https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry'
@@ -9,7 +8,7 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      courses: []
+      courses: [],
     }
   }
 
@@ -23,12 +22,11 @@ class App extends React.Component {
 
   render(){
     return (
-      <Frame style={{width: '100%', border: 'none'}}>
         <div className="App">
           {this.state.courses.map(course => <Card title={course.title}
+          id={course.ProviderUniqueID}
           description={course.RichDescription} />)}
         </div>
-      </Frame>
     )
   }
 }
