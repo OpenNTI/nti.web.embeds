@@ -24,6 +24,7 @@ const Card = (props) => (
   </div></a>
   
 
+
   )
 
 export default Card
