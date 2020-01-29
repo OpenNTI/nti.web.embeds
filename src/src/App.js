@@ -1,10 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD
 import Card from './components/Card';
 import Frame from './components/Frame';
-=======
-import Card from './components/Card'
->>>>>>> troy
+
 
 const BASE_URL = 'https://alpha.nextthought.com'
 const REQ_URL = BASE_URL+'/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry'
@@ -33,20 +30,13 @@ class App extends React.Component {
 
   render(){
     return (
-<<<<<<< HEAD
       //<Frame style={{width: '100%', border: 'none'}}>
         <div className="App">
           {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
           description={course.DCTitle} image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}  />)}
         </div>
       //</Frame>
-=======
-        <div className="App">
-          {this.state.courses.map(course => <Card title={course.title}
-          id={course.ProviderUniqueID}
-          description={course.RichDescription} />)}
-        </div>
->>>>>>> troy
+
     )
   }
 }
