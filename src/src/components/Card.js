@@ -1,23 +1,30 @@
 import React from 'react';
+import { checkPropTypes } from 'prop-types';
 
+
+function toggleMode() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
 const Card = (props) => (
-    <div style={{
-      backgroundColor: 'white',
-      display: 'flex',
-      flexDirection: props.direction == 'row' ? 'row' : 'column',
-      width: props.direction == 'row' ? '225px' : 'min-content'
-    }}>
-      <div>
-        <h4 style={{backgroundColor: 'orange', color: 'white', width: 'fit-content', padding: 4}}>Preview</h4> 
-        <div>
-          <img src="https://alpha.nextthought.com/content/sites/alpha.nextthought.com/Courses/DefaultAPICreated/OUCS-1/presentation-assets/webapp/v1/contentpackage-landing-232x170.png"/>
-        </div>
-      </div>
-      <div>
-        <p>{props.id}</p>
-        <h5>{props.title}</h5>
-      </div>
-    </div>
+  //<iframe title={props.title} id={props.title} frameBorder="0" scrolling="no" width ="250" height="350" src="iframetest.html"></iframe>
+  <a href="#"><div scrolling="no" style={{
+    backgroundColor: 'white',
+    height:"250px",
+    width:"225px"
+
+  }}> 
+    <img src={props.image} />
+
+    <p style={{backgroundColor:'black', color:'white'}}>{props.title}</p> 
+    <div>
+      {props.description} 
+    </div> 
+
+  </div></a>
+  
+
+
   )
 
 export default Card

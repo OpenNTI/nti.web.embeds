@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+</head>
+<style>
+    .dark-mode {
+        background-color: black;
+        color: white;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+    }
+</style>
+<body>
+    <div>
+        <p id="className"><strong><script>document.write(window.frameElement.id);</script></strong></p><!--figure out how to pass this in from the script-->
+        <p>INFO 1</p>
+        <p>INFO 2</p>
+        <p>INFO 3</p>
+        <p>INFO 4</p>
+        <button id="GEOG1114" name="GEOG1114" class="btn" data-toggle="modal" data-target="#myModal">View Class</button>
+        <br/>
+        <br/>
+        <button onclick="toggleMode()">Toggle dark mode</button>
+    </div>
+    <script>
+        function toggleMode() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+    </script>
+</body>   
+</html>
