@@ -14,29 +14,38 @@ class App extends React.Component {
     super(props)
     this.state = {
       courses: [],
+      darkmode: false,
+      direction: 'column'
     }
   }
 
   componentDidMount = () => {
+    const urlParams = new URLSearchParams(window.location.search);
     fetch(REQ_URL, {
       headers: {
         'X-Requested-With': 'XMLHTTPRequest',
         'User-Agent' : 'NextThought OUCS Capstone 1920'
       }
-    }).then(response => response.json().then(courseCatalog => this.setState({courses: [courseCatalog]})) )
-
+    }).then(response => response.json().then((courseCatalog) => {
+      const darkmode = urlParams.get('darkmode') || false
+      const direction = urlParams.get('direction') || 'column'
+      const courseId = urlParams.get('courseID') || ''
+      this.setState({courses: [courseCatalog], direction, darkmode, courseId})
+    }))
   }
 
 
   render(){
     return (
-      //<Frame style={{width: '100%', border: 'none'}}>
         <div className="App">
-          {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
-          description={course.DCTitle} image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}  />)}
+          <div>
+            {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
+            description={course.DCTitle} 
+            image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
+            direction={this.state.direction}
+            darkMode={this.state.darkmode == 'true'} />)}
+          </div>
         </div>
-      //</Frame>
-
     )
   }
 }
