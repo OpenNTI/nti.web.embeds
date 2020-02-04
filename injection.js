@@ -6,5 +6,8 @@
 
 const iFrame = document.createElement('iframe')
 const thisScript = document.getElementById('capstone')
-iFrame.src = "http://127.0.0.1:3000/index.html"
+const darkMode = thisScript.getAttribute('darkMode') || 'false'
+const flowDirection = thisScript.getAttribute('direction')
+const courseID = thisScript.getAttribute('courseId') || ''
+iFrame.src = `http://127.0.0.1:3000/build/index.html?darkmode=${darkMode}&direction=${flowDirection}&courseID=${courseID}`
 thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)

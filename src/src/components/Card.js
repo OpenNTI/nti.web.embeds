@@ -1,23 +1,38 @@
 import React from 'react';
+import { checkPropTypes } from 'prop-types';
 
+
+function toggleMode() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
 const Card = (props) => (
-    <div style={{
-      backgroundColor: 'white',
-      display: 'flex',
-      flexDirection: props.direction == 'row' ? 'row' : 'column',
-      width: props.direction == 'row' ? '225px' : 'min-content'
-    }}>
-      <div>
-        <h4 style={{backgroundColor: 'orange', color: 'white', width: 'fit-content', padding: 4}}>Preview</h4> 
-        <div>
-          <img src="https://alpha.nextthought.com/content/sites/alpha.nextthought.com/Courses/DefaultAPICreated/OUCS-1/presentation-assets/webapp/v1/contentpackage-landing-232x170.png"/>
-        </div>
-      </div>
-      <div>
-        <p>{props.id}</p>
-        <h5>{props.title}</h5>
-      </div>
+  <a href="#" style={{textDecoration: 'none'}}>
+  <div scrolling="no" style={{
+    backgroundColor: props.darkMode ? '#333340':'white',
+    maxHeight:"250px",
+    height: '100%',
+    width: 'fit-content',
+    padding: 8,
+    maxWidth: props.direction == 'row' ? 'none' : "225px",
+    display: 'flex',
+    flexDirection: props.direction,
+    boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
+
+  }}> 
+    <img src={props.image} />
+
+    <div style={{margin: 'auto 0'}}>
+      <p style={{color: props.darkMode ? 'white' : 'gray', fontWeight: '500'}}>{props.title}</p> 
+      <div style={{color: props.darkMode ? 'white' : 'gray', fontWeight: '700'}}>
+        {props.description} 
+      </div> 
     </div>
+
+  </div></a>
+  
+
+
   )
 
 export default Card
