@@ -6,5 +6,5 @@
 
 const iFrame = document.createElement('iframe')
 const thisScript = document.getElementById('capstone')
-iFrame.src = "http://127.0.0.1:5500/index.html"
+iFrame.src = "http://127.0.0.1:3000/index.html"
 thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)
