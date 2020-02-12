@@ -2,8 +2,8 @@ import React from 'react';
 import { checkPropTypes } from 'prop-types';
 
 var courseID=""
-var style=""
-var mode=""
+var style="light"
+var mode="row"
 
 function courseID_Entered(val) {
     courseID = val;
@@ -63,7 +63,8 @@ function styleRadioClick() {
 }
 function updateExtract(sourceFunc) {
     var extract = document.getElementById("extract");
-    //TO-DO
+    var text="iFrame.src = `http://127.0.0.1:5500/build/index.html?darkmode=${" + style + "}&direction=${" + mode + "}&courseID=${" + courseID + "}` <br/> thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)";
+    extract.innerHTML = text;
 }
 function toggleMode() {
     var element = document.body;
@@ -87,7 +88,7 @@ const Builder = (props) => (
       <h1>Course Card Builder</h1>
       <br/>
       <p>Course URL</p>
-      <input type="text" name="CourseURL" onchange="courseID_Entered(this.value)">
+      <input type="text" name="CourseID" onchange="courseID_Entered(this.value)">
       <p>Style</p>
       <input type="radio" value="row" id="rowRad" onchange="styleRadioClick(this)">
       <label>Row</label>
