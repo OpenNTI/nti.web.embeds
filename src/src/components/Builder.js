@@ -2,14 +2,14 @@ import React from 'react';
 import { checkPropTypes } from 'prop-types';
 
 var courseID=""
-var style="light"
-var mode="row"
+var style="row"
+var mode="light"
 
 function courseID_Entered(val) {
     courseID = val;
     updateExtract();
 }
-function modeRadioClick(sourceRad) {
+function styleRadioClick(sourceRad) {
     var rowRad = document.getElementById("rowRad");
     var colRad = document.getElementById("colRad");
     
@@ -35,35 +35,35 @@ function modeRadioClick(sourceRad) {
     }
     updateExtract();
 }
-function styleRadioClick(sourceRad) {
+function modeRadioClick(sourceRad) {
     var lightRad = document.getElementById("lightRad");
     var darkRad = document.getElementById("darkRad");
     
     if (sourceRad == lightRad) {
         if (lightRad.checked == true) {
             darkRad.checked = false;
-            style="light";
+            mode="light";
         }
         else {
             darkRad.checked = true;
-            style="dark";
+            mode="dark";
         }
     }
     else {
         if (darkRad.checked == true) {
             lightRad.checked = false;
-            style = "dark";
+            mode = "dark";
         }
         else {
             lightRad.checked = true;
-            style = "light";
+            mode = "light";
         }
     }
     updateExtract();
 }
 function updateExtract() {
     var extract = document.getElementById("extract");
-    var text="iFrame.src = `http://127.0.0.1:5500/build/index.html?darkmode=${" + style + "}&direction=${" + mode + "}&courseID=${" + courseID + "}` <br/> thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)";
+    var text="iFrame.src = `http://127.0.0.1:5500/build/index.html?darkmode=${" + mode + "}&direction=${" + style + "}&courseID=${" + courseID + "}` <br/> thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)";
     extract.innerHTML = text;
 }
 function toggleMode() {
@@ -101,7 +101,7 @@ const Builder = (props) => (
       <label>Dark</label>
       <br/>
       <p>Copy the text below into your page. ...</p>
-      <p id="extract"></p>
+      <p id="extract">iFrame.src = `http://127.0.0.1:5500/build/index.html?darkmode=${}&direction=${}&courseID=${}` <br/> thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)</p>
     </div>
   </div></a>
   )
