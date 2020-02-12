@@ -37,14 +37,12 @@ class App extends React.Component {
 
   render(){
     return (
-        <div className="App">
-          <div>
+        <div id ="insertedcard" className="App">
             {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
             description={course.DCTitle} 
             image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
             direction={this.state.direction}
             darkMode={this.state.darkmode == 'true'} />)}
-          </div>
         </div>
     )
   }
