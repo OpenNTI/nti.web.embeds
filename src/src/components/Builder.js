@@ -35,7 +35,7 @@ function modeRadioClick(sourceRad) {
     }
     updateExtract();
 }
-function styleRadioClick() {
+function styleRadioClick(sourceRad) {
     var lightRad = document.getElementById("lightRad");
     var darkRad = document.getElementById("darkRad");
     
@@ -61,7 +61,7 @@ function styleRadioClick() {
     }
     updateExtract();
 }
-function updateExtract(sourceFunc) {
+function updateExtract() {
     var extract = document.getElementById("extract");
     var text="iFrame.src = `http://127.0.0.1:5500/build/index.html?darkmode=${" + style + "}&direction=${" + mode + "}&courseID=${" + courseID + "}` <br/> thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)";
     extract.innerHTML = text;
@@ -95,9 +95,9 @@ const Builder = (props) => (
       <input type="radio" value="col" id="colRad" onchange="styleRadioClick(this)">
       <label>Column</label>
       <p>Mode</p>
-      <input type="radio" value="light" id="lightRad" onchange="modeRadioClick()">
+      <input type="radio" value="light" id="lightRad" onchange="modeRadioClick(this)">
       <label>Light</label>
-      <input type="radio" value="dark" id="darkRad" onchange="modeRadioClick()">
+      <input type="radio" value="dark" id="darkRad" onchange="modeRadioClick(this)">
       <label>Dark</label>
       <br/>
       <p>Copy the text below into your page. ...</p>
