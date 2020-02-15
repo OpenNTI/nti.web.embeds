@@ -1,0 +1,15 @@
+﻿Since the last in-person meeting, our group has created a builder widget, Builder.js, with proper styling. The Builder.js script updates and stores input variables (taken from user). When the user inputs those variables, Builder.js updates the example injection script for the user. This way, all updates are implemented and shown immediately.
+We previously had an issue with a scroll bar appearing on the course card. However, we have fixed this issue. The whole image still appears, and there is no scroll bar.
+Lastly, we have uploaded the application onto a server using Heroku.
+
+
+The group still needs to work on dynamically grabbing information from the user and updating the course page. This is something the group is working on, but it is taking some time since most of us are still getting used to using React. As we continue, we adjust and fix styling errors. Another thing that we need to work on is dynamically fixing the styling (vertical/ horizontal layout, light/ dark mode) based on user input.
+
+
+Listed deliverables:
+* Created Builder.js
+* Builder.js styling is complete
+* Builder.js updates and stores input variables
+* Builder.js visually updates the example injection script for the user
+* Got rid of scroll bar on the course card
+* Upload application to heroku server
