@@ -84,7 +84,7 @@ const Builder = (props) => (
     boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
 
   }}> 
-    <div style={{margin: 'auto 0'}}>
+    <div onload="updateExtract()" style={{margin: 'auto 0'}}>
       <h1>Course Card Builder</h1>
       <br/>
       <p>Course URL</p>
