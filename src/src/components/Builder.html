@@ -1,6 +1,8 @@
-import React from 'react';
-import { checkPropTypes } from 'prop-types';
+<!DOCTYPE html>
+<html>
+<body onload="updateExtract()">
 
+<script>
 var courseID=""
 var style="row"
 var mode="light"
@@ -66,13 +68,10 @@ function updateExtract() {
     var text="iFrame.src = `http://127.0.0.1:5500/build/index.html?darkmode=${" + mode + "}&direction=${" + style + "}&courseID=${" + courseID + "}` <br/> thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)";
     extract.innerHTML = text;
 }
-function toggleMode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-}
-const Builder = (props) => (
-  <a href="#" style={{textDecoration: 'none'}}>
-  <div scrolling="no" style={{
+    </script>
+    
+    
+<div scrolling="no" style={{
     backgroundColor: props.darkMode ? '#333340':'white',
     maxHeight:"250px",
     height: '100%',
@@ -82,9 +81,8 @@ const Builder = (props) => (
     display: 'flex',
     flexDirection: props.direction,
     boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
-
-  }}> 
-    <div onload="updateExtract()" style={{margin: 'auto 0'}}>
+}}> 
+    <div style="margin: 'auto 0'; font-family: 'Open Sans',sans-serif; ">
       <h1>Course Card Builder</h1>
       <br/>
       <p>Course URL</p>
@@ -103,7 +101,8 @@ const Builder = (props) => (
       <p>Copy the text below into your page. ...</p>
       <p id="extract">iFrame.src = `http://127.0.0.1:5500/build/index.html?darkmode=${}&direction=${}&courseID=${}` <br/> thisScript.parentNode.insertBefore(iFrame, thisScript.nextSibling)</p>
     </div>
-  </div></a>
-  )
+</div>
 
-export default Builder
+</body>
+</html>
+ 
