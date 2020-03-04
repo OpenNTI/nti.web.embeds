@@ -36,7 +36,7 @@
 		var mode="light"
 		var height="100"
 		var width="100"
-
+		var iframe = ""
 		function courseURL_Entered(val) {
 			courseURL = val;
 			updateExtract();
@@ -50,28 +50,28 @@
 				if (rowRad.checked == true) {
 					colRad.checked = false;
 					style="row";
-					height="100";
-					width="100";
+					height="180px";
+					width="100%";
 				}
 				else {
 					colRad.checked = true;
-					style="col";
-					height="100";
-					width="100";
+					style="column";
+					height="245px";
+					width="210px";
 				}
 			}
 			else {
 				if (colRad.checked == true) {
 					rowRad.checked = false;
-					style = "col";
-					height="100";
-					width="100";
+					style = "column";
+					height="245px";
+					width="210px";
 				}
 				else {
 					rowRad.checked = true;
 					style = "row";
-					height="100";
-					width="100";
+					height="180px";
+					width="100%";
 				}
 			}
 			updateExtract();
@@ -84,21 +84,21 @@
 			if (sourceRad == lightRad) {
 				if (lightRad.checked == true) {
 					darkRad.checked = false;
-					mode="light";
+					mode="false";
 				}
 				else {
 					darkRad.checked = true;
-					mode="dark";
+					mode="true";
 				}
 			}
 			else {
 				if (darkRad.checked == true) {
 					lightRad.checked = false;
-					mode = "dark";
+					mode = "true";
 				}
 				else {
 					lightRad.checked = true;
-					mode = "light";
+					mode = "false";
 				}
 			}
 			updateExtract();
@@ -106,14 +106,20 @@
 		
 		function updateExtract() {
 			var extract = document.getElementById("extract");
-			var text="&lt;iFrame src = 'http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "px; width: " + width + "px; \" /&gt;";
+			//var text="&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height:- " + height + "px;\" width='100%' &gt; &lt;/iframe&gt";
+			//var text="&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' height:\" "+ height +" \"+ \"width=  +width + &gt; &lt;/iframe&gt";
+			var text = `&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}'&gt; &lt;/iframe&gt`
 			extract.innerHTML = text;
 		}
 		</script>
-    
+	<iframe src = "http://127.0.0.1:3000/build/index.html?darkmode=light&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry" height='100' width='100'> </iframe>
+
+	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=false&direction=column&courseID='  height="245px" width='210px' > </iframe> <!--COLUMN OPTION-->
+	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=false&direction=row&courseID=' height="180px" width='100%' > </iframe> <!--ROW OPTION-->
+	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=true&direction=row&courseID=' height="180px" width='100%' > </iframe> <!--DARK ROW OPTION-->
+	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=true&direction=column&courseID='  height="245px" width='210px' > </iframe> <!--Dark COLUMN OPTION-->
 		<div> 
 			<div>
-                <iFrame src = 'http://127.0.0.1:5500/build/index.html?darkmode=light&direction=row&courseID='https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_word-wrap'' style="height: 100px; width: 100px; " />
 				<main >
 					<h1>Course Card Builder</h1>
 					<hr/>
@@ -134,8 +140,12 @@
 					<label>Dark</label>
 					<br/>
 					<h3>Copy the text below into your page. ...</h3>
-					<pre><code id="extract">&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=&direction=&courseID=' style="height: 100px; width: 100px;"/&gt; </code></pre>
+					<pre><code id="extract">&lt;iframe src='http://127.0.0.1:3000/build/index.html?darkmode=&direction=&courseID=' scrolling='no' height='100%' style='width: 310px;'&gt; </code></pre>
 				</main>
+					<!--<center>
+					<h3>Example Widget</h3>
+					
+					<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=light&direction=row&courseID=' scrolling="no" height='100%' style="width: 310px; "></iframe></center>-->
 			</div>
 		</div>
 	</body>

@@ -20,7 +20,9 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);      
+    const courseId = urlParams.get('courseID') || ''
+
     fetch(REQ_URL, {
       headers: {
         'X-Requested-With': 'XMLHTTPRequest',

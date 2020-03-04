@@ -9,10 +9,10 @@ function toggleMode() {
 const Card = (props) => (
   <a href="#" style={{textDecoration: 'none'}}>
   <div scrolling="no" style={{
-    backgroundColor: props.darkMode ? '#333340':'white',
+    backgroundColor: props.darkMode ? 'gray':'white',
     maxHeight:"250px",
     height: '100%',
-    width: 'fit-content',
+    
     padding: 8,
     maxWidth: props.direction == 'row' ? 'none' : "225px",
     display: 'flex',
