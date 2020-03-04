@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+main {
+	font-family: Helvetica, "sans-serif";
+	background-color: #e8ffef;
+	background-blend-mode: lighten;
+	padding: 10px;
+	margin: 10px;
+	width: 700px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 10px 10px 8px grey;
+}
+
+
+code {
+	padding: 12px;
+	outline: auto;
+	outline-style: solid;
+	outline-color: black;
+	outline-width: thin;
+}
