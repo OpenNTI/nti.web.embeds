@@ -14,6 +14,7 @@
   body {
     font: 400 15px/1.8 Lato, sans-serif;
     color: #d93636;
+    background-color: #808080;
   }
   h3, h4 {
     margin: 10px 0 30px 0;
@@ -49,7 +50,8 @@
     }
   }
   .bg-1 {
-    background: #960207;
+     background: #666666;
+    /* background: #333333 */
     color: #120202;
   }
   .bg-1 h3 {color: #fff;}
@@ -212,7 +214,8 @@
                 //seamless on iframe
                 var a = document.createElement('iframe'); 
                 var class_name = document.currentScript.getAttribute('name'); //set the script name to the name you want on the class card
-                a.src = "reactiFrame.html"; 
+                //a.src = "reactiFrame.html"; 
+                a.src = "iframetest.html";
                 a.frameBorder = "0";
                 a.scrolling = "no";
                 a.setAttribute("id", class_name);
