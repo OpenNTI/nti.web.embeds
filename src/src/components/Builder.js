@@ -8,7 +8,7 @@ var height="100"
 var width="100"
 
 function courseURL_Entered(val) {
-    courseURL = val;
+    courseURL = encodeURIComponent(val);
     updateExtract();
 }
 function styleRadioClick(sourceRad) {

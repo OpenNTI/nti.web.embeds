@@ -6,8 +6,8 @@ import Frame from './components/Frame';
 const BASE_URL = 'https://alpha.nextthought.com'
 const REQ_URL = BASE_URL+'/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry'
 const IMAGE_NAME = 'contentpackage-landing-232x170.png'
-//const REQ_IMG_URL = BASE_URL+'content/sites/alpha.nextthought.com/Courses/DefaultAPICreated/OUCS-1/presentation-assets/webapp/v1/contentpackage-landing-232x170.png'
-
+//const REQ_IMG_URL = BASE_URL+'https://alpha.nextthought.comcontent/sites/alpha.nextthought.com/Courses/DefaultAPICreated/OUCS-1/presentation-assets/webapp/v1/contentpackage-landing-232x170.png'
+//https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry
 class App extends React.Component {
 
   constructor(props){
@@ -15,18 +15,28 @@ class App extends React.Component {
     this.state = {
       courses: [],
       darkmode: false,
-      direction: 'column'
+      direction: 'column',
+      courseURL: ''
     }
   }
 
   componentDidMount = () => {
     const urlParams = new URLSearchParams(window.location.search);      
-    const courseId = urlParams.get('courseID') || ''
+    const courseId = urlParams.get('courseID') 
+    //console.log(courseId)data
+    //const courseID = window.frameElement.getAttribute('data-courseID');
+    const courseIDD = decodeURIComponent(courseId);
+    const nameCleaned = courseIDD.replace(/\s/g, '+')
+    console.log(nameCleaned)
 
-    fetch(REQ_URL, {
+     //props.courseURL 
+    fetch(nameCleaned, {
+         // fetch(REQ_URL, {
       headers: {
         'X-Requested-With': 'XMLHTTPRequest',
-        'User-Agent' : 'NextThought OUCS Capstone 1920'
+        'User-Agent' : 'NextThought OUCS Capstone 1920',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       }
     }).then(response => response.json().then((courseCatalog) => {
       const darkmode = urlParams.get('darkmode') || false

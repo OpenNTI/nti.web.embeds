@@ -32,10 +32,10 @@
 	
 	<script>
 		var courseURL=""
-		var style="row"
-		var mode="light"
-		var height="100"
-		var width="100"
+		var style=""
+		var mode=""
+		var height=""
+		var width=""
 		var iframe = ""
 		function courseURL_Entered(val) {
 			courseURL = val;
@@ -108,16 +108,17 @@
 			var extract = document.getElementById("extract");
 			//var text="&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height:- " + height + "px;\" width='100%' &gt; &lt;/iframe&gt";
 			//var text="&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' height:\" "+ height +" \"+ \"width=  +width + &gt; &lt;/iframe&gt";
+			
 			var text = `&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}'&gt; &lt;/iframe&gt`
 			extract.innerHTML = text;
 		}
 		</script>
+		<!--
+	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=light&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry' height='100' width='100'> </iframe>
 	<iframe src = "http://127.0.0.1:3000/build/index.html?darkmode=light&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry" height='100' width='100'> </iframe>
+-->
+<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=true&direction=column&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry' height='245px' width='210px'> </iframe>
 
-	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=false&direction=column&courseID='  height="245px" width='210px' > </iframe> <!--COLUMN OPTION-->
-	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=false&direction=row&courseID=' height="180px" width='100%' > </iframe> <!--ROW OPTION-->
-	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=true&direction=row&courseID=' height="180px" width='100%' > </iframe> <!--DARK ROW OPTION-->
-	<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=true&direction=column&courseID='  height="245px" width='210px' > </iframe> <!--Dark COLUMN OPTION-->
 		<div> 
 			<div>
 				<main >
@@ -140,7 +141,7 @@
 					<label>Dark</label>
 					<br/>
 					<h3>Copy the text below into your page. ...</h3>
-					<pre><code id="extract">&lt;iframe src='http://127.0.0.1:3000/build/index.html?darkmode=&direction=&courseID=' scrolling='no' height='100%' style='width: 310px;'&gt; </code></pre>
+					<pre><code id="extract"></code></pre>
 				</main>
 					<!--<center>
 					<h3>Example Widget</h3>
