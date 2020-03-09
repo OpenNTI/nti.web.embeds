@@ -4,8 +4,8 @@ import { checkPropTypes } from 'prop-types';
 var courseURL=""
 var style="row"
 var mode="light"
-var height="100"
-var width="100"
+var height="180px"
+var width="100%"
 
 function courseURL_Entered(val) {
     courseURL = encodeURIComponent(val);
@@ -19,28 +19,28 @@ function styleRadioClick(sourceRad) {
         if (rowRad.checked == true) {
             colRad.checked = false;
             style="row";
-            height="100";
-            width="100";
+            height="180px";
+            width="100%";
         }
         else {
             colRad.checked = true;
             style="col";
-            height="100";
-            width="100";
+            height="245px";
+            width="210px";
         }
     }
     else {
         if (colRad.checked == true) {
             rowRad.checked = false;
             style = "col";
-            height="100";
-            width="100";
+            height="245px";
+            width="210px";
         }
         else {
             rowRad.checked = true;
             style = "row";
-            height="100";
-            width="100";
+            height="180px";
+            width="100%";
         }
     }
     updateExtract();
@@ -52,28 +52,28 @@ function modeRadioClick(sourceRad) {
     if (sourceRad == lightRad) {
         if (lightRad.checked == true) {
             darkRad.checked = false;
-            mode="light";
+            mode="false";
         }
         else {
             darkRad.checked = true;
-            mode="dark";
+            mode="true";
         }
     }
     else {
         if (darkRad.checked == true) {
             lightRad.checked = false;
-            mode = "dark";
+            mode = "true";
         }
         else {
             lightRad.checked = true;
-            mode = "light";
+            mode = "false";
         }
     }
     updateExtract();
 }
 function updateExtract() {
     var extract = document.getElementById("extract");
-    var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "px; width: " + width + "px; \" /&gt;";
+    var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "; width: " + width + "; \" /&gt;";
     extract.innerHTML = text;
 }
 function toggleMode() {
@@ -113,7 +113,7 @@ const Builder = (props) => (
       <label>Dark</label>
       <br/>
       <h3>Copy the text below into your page. ...</h3>
-      <pre><code id="extract" style="padding: 12px; outline: auto; outline-style: solid; outline-color: black; outline-width: thin; width: 200px; white-space: pre-wrap;">&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=&direction=&courseID=' style="height: 100px; width: 100px;"/&gt; </code></pre>
+      <textarea id="extract" style="width: 95%">&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' style="height: 180px; width: 100%;"/&gt; </textarea>
     </div>
   </div></a>
   )
