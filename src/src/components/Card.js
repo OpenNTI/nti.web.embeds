@@ -23,6 +23,7 @@ function getRouteForCatalogEntry(entry) {
   return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
 }
 const Card = (props) => (
+  
   <a href={getRouteForCatalogEntry(props.href)} style={{textDecoration: 'none'}}>
   <div scrolling="no" style={{
     backgroundColor: props.darkMode ? 'gray':'white',
