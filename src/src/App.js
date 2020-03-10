@@ -16,17 +16,22 @@ class App extends React.Component {
       courses: [],
       darkmode: false,
       direction: 'column',
-      courseURL: ''
+      courseURL: '',
+      coreHref: ''
     }
   }
 
   componentDidMount = () => {
-    const urlParams = new URLSearchParams(window.location.search);      
+    let decodedURL = decodeURIComponent(window.location.search);
+    console.log(decodedURL)
+    const urlParams = new URLSearchParams(decodedURL);      
     const courseId = urlParams.get('courseID') 
     //console.log(courseId)data
     //const courseID = window.frameElement.getAttribute('data-courseID');
-    const courseIDD = decodeURIComponent(courseId);
-    const nameCleaned = courseIDD.replace(/\s/g, '+')
+    //const courseIDD = decodeURIComponent(courseId);
+    //console.log(courseIDD)
+    //console.log(window.location.search);
+    const nameCleaned = courseId.replace(/\s/g, '+')
     console.log(nameCleaned)
 
      //props.courseURL 
@@ -42,7 +47,9 @@ class App extends React.Component {
       const darkmode = urlParams.get('darkmode') || false
       const direction = urlParams.get('direction') || 'column'
       const courseId = urlParams.get('courseID') || ''
-      this.setState({courses: [courseCatalog], direction, darkmode, courseId})
+      console.log(courseCatalog['href'])
+      console.log(courseCatalog)
+      this.setState({courses: [courseCatalog], direction, darkmode, courseId, coreHref: courseCatalog['href']})
     }))
   }
 
@@ -55,6 +62,7 @@ class App extends React.Component {
             description={course.DCTitle} 
             image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
             direction={this.state.direction}
+            href={this.state.coreHref}
             darkMode={this.state.darkmode == 'true'} />)}
           </div>
         </div>

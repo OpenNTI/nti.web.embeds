@@ -103,6 +103,7 @@ const Builder = (props) => (
     maxWidth: props.direction == 'row' ? 'none' : "225px",
     display: 'flex',
     flexDirection: props.direction,
+    
     boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
 
   }}> 
