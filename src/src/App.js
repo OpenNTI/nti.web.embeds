@@ -21,12 +21,16 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    const urlParams = new URLSearchParams(window.location.search);      
+    let decodedURL = decodeURIComponent(window.location.search);
+    console.log(decodedURL)
+    const urlParams = new URLSearchParams(decodedURL);      
     const courseId = urlParams.get('courseID') 
     //console.log(courseId)data
     //const courseID = window.frameElement.getAttribute('data-courseID');
-    const courseIDD = decodeURIComponent(courseId);
-    const nameCleaned = courseIDD.replace(/\s/g, '+')
+    //const courseIDD = decodeURIComponent(courseId);
+    //console.log(courseIDD)
+    //console.log(window.location.search);
+    const nameCleaned = courseId.replace(/\s/g, '+')
     console.log(nameCleaned)
 
      //props.courseURL 
