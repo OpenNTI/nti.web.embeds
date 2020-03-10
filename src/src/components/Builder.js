@@ -80,6 +80,18 @@ function toggleMode() {
     var element = document.body;
     element.classList.toggle("dark-mode");
 }
+function Label(props) {
+    return <label>{props.name}</label>;
+}
+function Title(props) {
+    return <h1>{props.name}</h1>;
+}
+function Header(props) {
+    return <br/><h3>{props.name}</h3>;
+}
+function Extract(props) {
+    return <textarea id="extract" style="width: 95%">{props.name}</textarea>;
+}
 const Builder = (props) => (
   <a href="#" style={{textDecoration: 'none'}}>
   <div scrolling="no" style={{
@@ -95,25 +107,21 @@ const Builder = (props) => (
 
   }}> 
     <div onload="updateExtract()" style="font-family: Helvetica, "sans-serif"; background-color: #e8ffef; background-blend-mode: lighten; padding: 10px; margin: 10px; width: 60%; min-width: 715px; display: block; margin-left: auto; margin-right: auto; box-shadow: 10px 10px 8px grey;">
-      <h1>Course Card Builder</h1>
-      <br/>
-      <h3>Course URL</h3>
+      <Title name="Course Card Builder"/>
+      <Header name="Course URL"/>
       <input type="text" name="CourseURL" onchange="courseURL_Entered(this.value)">
-      <br/>
-      <h3>Style</h3>
+      <Header name="Style/>
       <input type="radio" value="row" id="rowRad" onchange="styleRadioClick(this)">
-      <label>Row</label>
+      <Label name="Row"/>
       <input type="radio" value="col" id="colRad" onchange="styleRadioClick(this)">
-      <label>Column</label>
-      <br/>
-      <h3>Mode</h3>
+      <Label name="Column"/>
+      <Header name="Mode">
       <input type="radio" value="light" id="lightRad" onchange="modeRadioClick(this)">
-      <label>Light</label>
+      <Label name="Light">
       <input type="radio" value="dark" id="darkRad" onchange="modeRadioClick(this)">
-      <label>Dark</label>
-      <br/>
-      <h3>Copy the text below into your page. ...</h3>
-      <textarea id="extract" style="width: 95%">&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' style="height: 180px; width: 100%;"/&gt; </textarea>
+      <Label name="dark">
+      <Header name="Copy the text below into your page. ..."/>
+      <Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' style='height: 180px; width: 100%;'/&gt;"/>
     </div>
   </div></a>
   )
