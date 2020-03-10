@@ -6,8 +6,24 @@ function toggleMode() {
     var element = document.body;
     element.classList.toggle("dark-mode");
 }
+
+const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
+const HREF_SPECIFIC_TYPE = '__nti_object_href';
+const {btoa} = global; 
+function encodeIdFrom(href) { 
+  try { 
+    const id = encodeURIComponent(btoa(href));
+    return `${COMMON_PREFIX}${HREF_SPECIFIC_TYPE}-${id}`;
+} catch(e) {
+    console.error('Missing polyfill for btoa'); 
+    throw e; 
+  } 
+} 
+function getRouteForCatalogEntry(entry) { 
+  return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
+}
 const Card = (props) => (
-  <a href="#" style={{textDecoration: 'none'}}>
+  <a href={getRouteForCatalogEntry(props.href)} style={{textDecoration: 'none'}}>
   <div scrolling="no" style={{
     backgroundColor: props.darkMode ? 'gray':'white',
     maxHeight:"250px",
