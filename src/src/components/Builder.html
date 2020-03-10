@@ -15,17 +15,6 @@
             margin-right: auto;
             box-shadow: 10px 10px 8px grey;
         }
-        
-        code {
-            padding: 12px;
-            outline: auto;
-            outline-style: solid;
-            outline-color: black;
-            outline-width: thin;
-            width: 200px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
     </style>
     </head>
 	<body onload="updateExtract()">
@@ -107,6 +96,7 @@
 		
 		function updateExtract() {
 			var extract = document.getElementById("extract");
+<<<<<<< HEAD
 			//var text="&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height:- " + height + "px;\" width='100%' &gt; &lt;/iframe&gt";
 			//var text="&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' height:\" "+ height +" \"+ \"width=  +width + &gt; &lt;/iframe&gt";
 			
@@ -129,6 +119,14 @@
 <iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=true&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry' height="180px" width='100%' > </iframe> <!--DARK ROW OPTION-->
 <iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=true&direction=column&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry'  height="245px" width='210px' > </iframe> <!--Dark COLUMN OPTION-->
 <div> 
+=======
+            var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "; width: " + width + ";\" /&gt;";
+			extract.innerHTML = text;
+		}
+    </script>
+    <iframe src = "http://127.0.0.1:3000/build/index.html?darkmode=light&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry" height='100' width='100'> </iframe>
+		<div> 
+>>>>>>> 8bf944e978fc417d862288a8464d58b01a72e97d
 			<div>
 				<main >
 					<h1>Course Card Builder</h1>
@@ -150,12 +148,8 @@
 					<label>Dark</label>
 					<br/>
 					<h3>Copy the text below into your page. ...</h3>
-					<pre><code id="extract"></code></pre>
+					<textarea id="extract" style="width: 95%;"></textarea>
 				</main>
-					<!--<center>
-					<h3>Example Widget</h3>
-					
-					<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=light&direction=row&courseID=' scrolling="no" height='100%' style="width: 310px; "></iframe></center>-->
 			</div>
 		</div>
 	</body>
