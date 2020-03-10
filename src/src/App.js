@@ -47,7 +47,7 @@ class App extends React.Component {
       const darkmode = urlParams.get('darkmode') || false
       const direction = urlParams.get('direction') || 'column'
       const courseId = urlParams.get('courseID') || ''
-      console.log(BASE_URL+ courseCatalog['href'])
+      //console.log(BASE_URL+ courseCatalog['href'])
       console.log(courseCatalog)
       this.setState({courses: [courseCatalog], direction, darkmode, courseId, coreHref: BASE_URL+courseCatalog['href']})
     }))
@@ -55,6 +55,7 @@ class App extends React.Component {
 
 
   render(){
+    console.log(this.state.coreHref);
     
     return (
         <div className="App">

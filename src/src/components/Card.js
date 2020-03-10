@@ -20,6 +20,7 @@ function encodeIdFrom(href) {
   } 
 } 
 function getRouteForCatalogEntry(entry) { 
+  //BASE URL SHOULD GO HERE  https://alpha.nextthought.com
   return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
 }
 const Card = (props) => (
