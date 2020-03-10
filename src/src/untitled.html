@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        main { 
+            font-family: Helvetica, "sans-serif";
+            background-color: #e8ffef;
+            background-blend-mode: lighten;
+            padding: 10px;
+            margin: 10px;
+            min-width: 715px;
+            width: 60%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 10px 10px 8px grey;
+        }
+    </style>
+    </head>
+	<body onload="updateExtract()">
+	
+	<script>
+		var courseURL=""
+		var style="row"
+		var mode="false"
+		var height="180px"
+		var width="100%"
+		var border=""
+
+        function courseURL_Entered(val) {
+			courseURL = encodeURIComponent(val);
+			updateExtract();
+		}
+		
+		function styleRadioClick(sourceRad) {
+			var rowRad = document.getElementById("rowRad");
+			var colRad = document.getElementById("colRad");
+			
+			if (sourceRad == rowRad) {
+				if (rowRad.checked == true) {
+					colRad.checked = false;
+					style="row";
+					height="180px";
+					width="100%";
+				}
+				else {
+					colRad.checked = true;
+					style="column";
+					height="245px";
+					width="210px";
+				}
+			}
+			else {
+				if (colRad.checked == true) {
+					rowRad.checked = false;
+					style = "column";
+					height="245px";
+					width="210px";
+				}
+				else {
+					rowRad.checked = true;
+					style = "row";
+					height="180px";
+					width="100%";
+				}
+			}
+			updateExtract();
+		}
+		
+		function modeRadioClick(sourceRad) {
+			var lightRad = document.getElementById("lightRad"); 
+			var darkRad = document.getElementById("darkRad");
+			
+			if (sourceRad == lightRad) {
+				if (lightRad.checked == true) {
+					darkRad.checked = false;
+					mode="false";
+				}
+				else {
+					darkRad.checked = true;
+					mode="true";
+				}
+			}
+			else {
+				if (darkRad.checked == true) {
+					lightRad.checked = false;
+					mode = "true";
+				}
+				else {
+					lightRad.checked = true;
+					mode = "false";
+				}
+			}
+			updateExtract();
+		}
+		
+		function updateExtract() {
+			var extract = document.getElementById("extract");
+            var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "; width: " + width + ";\" /&gt;";
+			extract.innerHTML = text;
+		}
+    </script>
+
+		<div> 
+			<iframe src = "http://127.0.0.1:3000/build/index.html?darkmode=light&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry" style="height: 180px; width: 100%; border-style: ridge;" > </iframe>
+			<iframe src = "http://127.0.0.1:3000/build/index.html?darkmode=light&direction=column&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry" style="height: 245px; width: 210px; border-style: ridge;" > </iframe>
+			<iframe src = "http://127.0.0.1:3000/build/index.html?darkmode=true&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry"  style="height: 180px; width: 100%; border-style: none;" > </iframe>
+			<iframe src = "http://127.0.0.1:3000/build/index.html?darkmode=true&direction=column&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry" style="height: 245px; width: 210px; border-style: none;"> </iframe>
+
+
+			<div>
+				<main >
+					<h1>Course Card Builder</h1>
+					<hr/>
+					<br/>
+					<h3>Course URL</h3>
+					<input type="text" name="CourseURL" onchange="courseURL_Entered(this.value)">
+					<br/>
+					<h3>Style</h3>
+					<input type="radio" value="row" id="rowRad" onchange="styleRadioClick(this)">
+					<label>Row</label>
+					<input type="radio" value="col" id="colRad" onchange="styleRadioClick(this)">
+					<label>Column</label>
+					<br/>
+					<h3>Mode</h3>
+					<input type="radio" value="light" id="lightRad" onchange="modeRadioClick(this)">
+					<label>Light</label>
+					<input type="radio" value="dark" id="darkRad" onchange="modeRadioClick(this)">
+					<label>Dark</label>
+					<br/>
+					<h3>Copy the text below into your page. ...</h3>
+					<textarea id="extract" style="width: 95%;"></textarea>
+				</main>
+			</div>
+		</div>
+	</body>
+</html>
+ 
