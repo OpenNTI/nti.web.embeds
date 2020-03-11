@@ -53,27 +53,37 @@ function modeRadioClick(sourceRad) {
         if (lightRad.checked == true) {
             darkRad.checked = false;
             mode="false";
+			styling="border-style: ridge";
+
         }
         else {
             darkRad.checked = true;
             mode="true";
+			styling="border-style: none";
+
         }
     }
     else {
         if (darkRad.checked == true) {
             lightRad.checked = false;
             mode = "true";
+			styling="border-style: none";
+
         }
         else {
             lightRad.checked = true;
             mode = "false";
+			styling="border-style: ridge";
+
         }
     }
     updateExtract();
 }
 function updateExtract() {
     var extract = document.getElementById("extract");
-    var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "; width: " + width + "; \" /&gt;";
+    //var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "; width: " + width + "; \" /&gt;";
+	var text = `&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}' style='${styling}' &gt; &lt;/iframe&gt`
+
     extract.innerHTML = text;
 }
 function toggleMode() {
@@ -122,7 +132,8 @@ const Builder = (props) => (
       <input type="radio" value="dark" id="darkRad" onchange="modeRadioClick(this)">
       <Label name="dark">
       <Header name="Copy the text below into your page. ..."/>
-      <Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' style='height: 180px; width: 100%;'/&gt;"/>
+      </Label><Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' height='180px' width='100%' style='border-style: ridge'/&gt;"/>
+ 
     </div>
   </div></a>
   )

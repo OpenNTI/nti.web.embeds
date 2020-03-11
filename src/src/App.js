@@ -17,7 +17,8 @@ class App extends React.Component {
       darkmode: false,
       direction: 'column',
       courseURL: '',
-      coreHref: ''
+      coreHref: '',
+      courseURL:''
     }
   }
 
@@ -33,7 +34,22 @@ class App extends React.Component {
     //console.log(window.location.search);
     const nameCleaned = courseId.replace(/\s/g, '+')
     console.log(nameCleaned)
-
+    const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
+    const HREF_SPECIFIC_TYPE = '__nti_object_href';
+    const {btoa} = global; 
+    function encodeIdFrom(href) { 
+      try { 
+        const id = encodeURIComponent(btoa(href));
+        return `${COMMON_PREFIX}${HREF_SPECIFIC_TYPE}-${id}`;
+    } catch(e) {
+        console.error('Missing polyfill for btoa'); 
+        throw e; 
+      } 
+    } 
+    function getRouteForCatalogEntry(entry) { 
+      //BASE URL SHOULD GO HERE  https://alpha.nextthought.com
+      return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
+    }
      //props.courseURL 
     fetch(nameCleaned, {
          // fetch(REQ_URL, {
@@ -47,9 +63,11 @@ class App extends React.Component {
       const darkmode = urlParams.get('darkmode') || false
       const direction = urlParams.get('direction') || 'column'
       const courseId = urlParams.get('courseID') || ''
+      
+      const courseURL = getRouteForCatalogEntry(courseCatalog);
       //console.log(BASE_URL+ courseCatalog['href'])
       console.log(courseCatalog)
-      this.setState({courses: [courseCatalog], direction, darkmode, courseId, coreHref: BASE_URL+courseCatalog['href']})
+      this.setState({courses: [courseCatalog], direction, darkmode, courseId, courseURL,  coreHref: BASE_URL+courseCatalog['href']})
     }))
   }
 
@@ -68,7 +86,7 @@ class App extends React.Component {
             //maybe this needs to be 
             //BASE_URL+
             href={this.state.coreHref}
-            
+            courseURL = {this.state.courseURL}
             darkMode={this.state.darkmode == 'true'} />)}
           </div>
         </div>
