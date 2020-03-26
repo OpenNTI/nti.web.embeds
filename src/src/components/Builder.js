@@ -103,13 +103,13 @@ function Extract(props) {
     return <textarea id="extract" style="width: 95%">{props.name}</textarea>;
 }
 function TextInput(props) {
-    return <input type="text" name={props.name} onChange="courseURL_Entered(this.value)">;
+    return <input type="text" name={props.name} onChange={courseURL_Entered(this.value)}>;
 }
 function StyleRadioButton(props) {
-    return <input type="radio" value={props.name} id={props.id} onChange="styleRadioClick(this)">
+    return <input type="radio" value={props.name} id={props.id} onChange={styleRadioClick(this)}>
 }
 function ModeRadioButton(props) {
-    return <input type="radio" value={props.name} id={props.id} onChange="modeRadioClick(this)">
+    return <input type="radio" value={props.name} id={props.id} onChange={modeRadioClick(this)}>
 }
 const Builder = (props) => (
   <a href="#" style={{textDecoration: 'none'}}>
