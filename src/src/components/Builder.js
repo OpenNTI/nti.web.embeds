@@ -102,6 +102,15 @@ function Header(props) {
 function Extract(props) {
     return <textarea id="extract" style="width: 95%">{props.name}</textarea>;
 }
+function TextInput(props) {
+    return <input type="text" name={props.name} onChange={courseURL_Entered(this.value)}>;
+}
+function StyleRadioButton(props) {
+    return <input type="radio" value={props.name} id={props.id} onChange={styleRadioClick(this)}>
+}
+function ModeRadioButton(props) {
+    return <input type="radio" value={props.name} id={props.id} onChange={modeRadioClick(this)}>
+}
 const Builder = (props) => (
   <a href="#" style={{textDecoration: 'none'}}>
   <div scrolling="no" style={{
@@ -120,16 +129,16 @@ const Builder = (props) => (
     <div onload="updateExtract()" style="font-family: Helvetica, "sans-serif"; background-color: #e8ffef; background-blend-mode: lighten; padding: 10px; margin: 10px; width: 60%; min-width: 715px; display: block; margin-left: auto; margin-right: auto; box-shadow: 10px 10px 8px grey;">
       <Title name="Course Card Builder"/>
       <Header name="Course URL"/>
-      <input type="text" name="CourseURL" onchange="courseURL_Entered(this.value)">
-      <Header name="Style/>
-      <input type="radio" value="row" id="rowRad" onchange="styleRadioClick(this)">
+      <TextInput name="CourseURL"/>
+      <Header name="Style"/>
+      <StyleRadioButton props.name="row" props.id="rowRad"/>
       <Label name="Row"/>
-      <input type="radio" value="col" id="colRad" onchange="styleRadioClick(this)">
+      <StyleRadioButton props.name="col" props.id="colRad"/>
       <Label name="Column"/>
       <Header name="Mode">
-      <input type="radio" value="light" id="lightRad" onchange="modeRadioClick(this)">
+      <ModeRadioButton props.name="light" props.id="lightRad"/>
       <Label name="Light">
-      <input type="radio" value="dark" id="darkRad" onchange="modeRadioClick(this)">
+      <ModeRadioButton props.name="dark" props.id="darkRad"/>
       <Label name="dark">
       <Header name="Copy the text below into your page. ..."/>
       </Label><Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' height='180px' width='100%' style='border-style: ridge'/&gt;"/>
