@@ -135,13 +135,13 @@ const Builder = (props) => (
       <Label name="Row"/>
       <StyleRadioButton props.name="col" props.id="colRad"/>
       <Label name="Column"/>
-      <Header name="Mode">
+      <Header name="Mode"/>
       <ModeRadioButton props.name="light" props.id="lightRad"/>
-      <Label name="Light">
+      <Label name="Light"/>
       <ModeRadioButton props.name="dark" props.id="darkRad"/>
-      <Label name="dark">
+      <Label name="dark"/>
       <Header name="Copy the text below into your page. ..."/>
-      </Label><Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' height='180px' width='100%' style='border-style: ridge'/&gt;"/>
+      <Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' height='180px' width='100%' style='border-style: ridge'/&gt;"/>
  
     </div>
   </div></a>
