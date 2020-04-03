@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './components/Card';
 import Frame from './components/Frame';
-
+import courseCatalog from './components/CourseCatalog';
+import CourseCatalog from './components/CourseCatalog';
 
 const BASE_URL = 'https://alpha.nextthought.com'
 const REQ_URL = BASE_URL+'/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry'
@@ -32,8 +33,8 @@ class App extends React.Component {
     //const courseIDD = decodeURIComponent(courseId);
     //console.log(courseIDD)
     //console.log(window.location.search);
-    const nameCleaned = courseId.replace(/\s/g, '+')
-    console.log(nameCleaned)
+    //const nameCleaned = courseId.replace(/\s/g, '+')
+    //console.log(nameCleaned)
     const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
     const HREF_SPECIFIC_TYPE = '__nti_object_href';
     const {btoa} = global; 
@@ -51,24 +52,24 @@ class App extends React.Component {
       return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
     }
      //props.courseURL 
-    fetch(nameCleaned, {
-         // fetch(REQ_URL, {
-      headers: {
-        'X-Requested-With': 'XMLHTTPRequest',
-        'User-Agent' : 'NextThought OUCS Capstone 1920',
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }).then(response => response.json().then((courseCatalog) => {
-      const darkmode = urlParams.get('darkmode') || false
-      const direction = urlParams.get('direction') || 'column'
-      const courseId = urlParams.get('courseID') || ''
+    // fetch(nameCleaned, {
+    //      // fetch(REQ_URL, {
+    //   headers: {
+    //     'X-Requested-With': 'XMLHTTPRequest',
+    //     'User-Agent' : 'NextThought OUCS Capstone 1920',
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json'
+    //   }
+    // }).then(response => response.json().then((courseCatalog) => {
+       const darkmode = urlParams.get('darkmode') || false
+       const direction = urlParams.get('direction') || 'column'
+      // courseId = null;// urlParams.get('courseID') || ''
       
-      const courseURL = getRouteForCatalogEntry(courseCatalog);
-      //console.log(BASE_URL+ courseCatalog['href'])
-      console.log(courseCatalog)
-      this.setState({courses: [courseCatalog], direction, darkmode, courseId, courseURL,  coreHref: BASE_URL+courseCatalog['href']})
-    }))
+      const courseURL = null;// getRouteForCatalogEntry(courseCatalog);
+    //   //console.log(BASE_URL+ courseCatalog['href'])
+    //   console.log(courseCatalog)
+       this.setState({courses: null, direction, darkmode, courseId, courseURL,  coreHref: null})// BASE_URL+courseCatalog['href']})
+    // }))
   }
 
 
@@ -76,8 +77,11 @@ class App extends React.Component {
     console.log(this.state.coreHref);
     
     return (
-        <div className="App">
-          <div>
+        <div className="App" id="App">
+          {
+            <CourseCatalog />
+          /* <div>
+
             {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
             description={course.DCTitle} 
             image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
@@ -87,8 +91,9 @@ class App extends React.Component {
             //BASE_URL+
             href={this.state.coreHref}
             courseURL = {this.state.courseURL}
-            darkMode={this.state.darkmode == 'true'} />)}
-          </div>
+            darkMode={this.state.darkmode == 'true'} />)} 
+
+          </div>*/}
         </div>
     )
   }

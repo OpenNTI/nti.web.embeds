@@ -3,6 +3,13 @@ import { checkPropTypes } from 'prop-types';
 import Card from './Card';
 
 
+var BASE_URL = "https://alpha.nextthought.com"
+var SERVICE_DOCS_URL = "https://alpha.nextthought.com/dataserver2/service"
+var userName = "slidingsteven";
+var passWord = "Capstone2020";
+var CATALOG_URL = null;
+var fetch = require("node-fetch")
+
 class CourseCatalog extends React.Component{
     constructor(props){
         super(props)
@@ -13,13 +20,9 @@ class CourseCatalog extends React.Component{
     
     // async so we can "await" API call - examples here https://javascript.info/async-await
         async getCourseInformation(){
+          var fetch = require("node-fetch")
             // TODO #1: Make request and then grab whatever endpoints and make another one till you get the course items
-            var BASE_URL = "https://alpha.nextthought.com"
-            var SERVICE_DOCS_URL = "https://alpha.nextthought.com/dataserver2/service"
-            var userName = "slidingsteven";
-            var passWord = "Capstone2020";
-            var CATALOG_URL = null;
-            var fetch = require("node-fetch")
+
 
             fetch(SERVICE_DOCS_URL, {headers: {
                     "X-Requested-With":"XMLHTTPRequest",
@@ -46,7 +49,7 @@ class CourseCatalog extends React.Component{
                                     //DCTitle, CourseNTIID
                                     Items
                                 } = data
-                                this.setState({courses:[Items]}) //This sets the catalog of courses
+                                this.setState({courses:Items}) //This sets the catalog of courses
 
                                 // for (let i =0; i<Items.length; i++){
                                 //     console.log(i + " : " + Items[i]["DCTitle"] +" ---- " + Items[i]["ProviderDisplayName"])
@@ -90,21 +93,30 @@ class CourseCatalog extends React.Component{
         }
       render(){
           //
+          
+          //console.log("Hi");
+          //console.log(this.state.courses);
+
           return (
             //Directly from the App.js file
-            <div className="App">
-              <div>
+            <div className="App" id="catologcomponent" >
                 {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
-                description={course.DCTitle} 
-                image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
-                direction={this.state.direction}
-    
-                //maybe this needs to be 
-                //BASE_URL+
-                href={this.state.coreHref}
-                courseURL = {this.state.courseURL}
-                darkMode={this.state.darkmode == 'true'} />)}
-              </div>
+                                          description={course.DCTitle} 
+                                          //image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
+                                          direction={this.state.direction}
+                                          
+                                          //maybe this needs to be 
+                                          //BASE_URL+
+                                          href={this.state.coreHref}
+                                          // courseURL = {this.state.courseURL}
+                                          darkMode={this.state.darkmode}
+                                          courseURL = {this.state.courseURL}
+                                          //darkMode='true'
+                                        
+                                          />)
+
+                }
+                
             </div>
         )
       }
