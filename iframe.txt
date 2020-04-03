@@ -1,0 +1,9 @@
+<iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=false&direction=column&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry' height='245px' width='210px' style='border-style: ridge' > </iframe>
+
+function SOfunction(URL){
+  window.top.location.href = URL;
+}
+
+const Card = (props) => (
+
+  <a onClick={() => SOfunction(getRouteForCatalogEntry(props.href))} style={{textDecoration: 'none'}}>

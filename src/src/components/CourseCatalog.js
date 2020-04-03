@@ -4,6 +4,7 @@ import Card from './Card';
 
 
 var BASE_URL = "https://alpha.nextthought.com"
+var TEMP_URL = "/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry"
 var SERVICE_DOCS_URL = "https://alpha.nextthought.com/dataserver2/service"
 var userName = "slidingsteven";
 var passWord = "Capstone2020";
@@ -50,7 +51,7 @@ class CourseCatalog extends React.Component{
                                     Items
                                 } = data
                                 this.setState({courses:Items}) //This sets the catalog of courses
-
+                                console.log(this.state.courses[0].href)
                                 // for (let i =0; i<Items.length; i++){
                                 //     console.log(i + " : " + Items[i]["DCTitle"] +" ---- " + Items[i]["ProviderDisplayName"])
                                 //     if (Items[i]["PlatformPresentationResources"].length >0){
@@ -97,28 +98,62 @@ class CourseCatalog extends React.Component{
           //console.log("Hi");
           //console.log(this.state.courses);
 
-          return (
-            //Directly from the App.js file
-            <div className="App" id="catologcomponent" >
-                {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
-                                          description={course.DCTitle} 
-                                          //image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
-                                          direction={this.state.direction}
+        //   return (
+        //     //Directly from the App.js file
+        //     <div className="App" id="catologcomponent" >
+        //         {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
+        //                                   description={course.DCTitle} 
+        //                                   //image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
+        //                                   direction={this.state.direction}
                                           
-                                          //maybe this needs to be 
-                                          //BASE_URL+
-                                          href={this.state.coreHref}
-                                          // courseURL = {this.state.courseURL}
-                                          darkMode={this.state.darkmode}
-                                          courseURL = {this.state.courseURL}
-                                          //darkMode='true'
+        //                                   //maybe this needs to be 
+        //                                   //BASE_URL+
+        //                                   href={this.state.coreHref}
+        //                                   // courseURL = {this.state.courseURL}
+        //                                   darkMode={this.state.darkmode}
+        //                                   courseURL = {this.state.courseURL}
+        //                                   //darkMode='true'
                                         
-                                          />)
+        //                                   />)
 
+        //         }
+                
+        //     </div>
+        // )
+                //var obj =JSON.parse(this.state.courses)
+                    //console.log(obj)
+
+
+
+
+        return(
+            <div className="App" id="catologcomponent">
+                {
+                //Column Catalog dark mode
+                    this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=true&direction=column&courseID='+BASE_URL+ course.href} height='245px' width='210px' 
+                    style={{'border-style': 'ridge'}}></iframe>)  
+                //Column Catalog light mode
+                    //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=column&courseID='+BASE_URL+ course.href} height='245px' width='210px' 
+                    //style={{'border-style': 'ridge'}}></iframe>)  
+                
+                //Row Catalog dark mode
+                    //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=true&direction=row&courseID='+BASE_URL+ course.href} height='180px' width='100%' 
+                    //style={{'border-style': 'ridge'}}></iframe>) 
+                //Row Catalog light mode
+                    //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID='+BASE_URL+ course.href} height='180px' width='100%' 
+                    //style={{'border-style': 'ridge'}}></iframe>)  
+
+
+                //Row Catalog light mode
+                    //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID='+BASE_URL+ course.href} height='180px' width='100%' 
+                    //style={{'border-style': 'ridge'}}></iframe>)  
                 }
+                
                 
             </div>
         )
+
+
       }
       
       
