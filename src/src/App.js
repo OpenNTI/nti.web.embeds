@@ -6,6 +6,8 @@ import defaultClassCard from './defaultClassCard.png'
 const BASE_URL = 'https://alpha.nextthought.com'
 const REQ_URL = BASE_URL+'/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry'
 const IMAGE_NAME = 'contentpackage-landing-232x170.png'
+var userName = "slidingsteven";
+var passWord = "Capstone2020";
 //const REQ_IMG_URL = BASE_URL+'https://alpha.nextthought.comcontent/sites/alpha.nextthought.com/Courses/DefaultAPICreated/OUCS-1/presentation-assets/webapp/v1/contentpackage-landing-232x170.png'
 //https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry
 class App extends React.Component {
@@ -19,7 +21,8 @@ class App extends React.Component {
       courseURL: '',
       coreHref: '',
       courseURL:'',
-      imgURL: ''
+      imgURL: '',
+      titleForCard:''
     }
   }
 
@@ -58,7 +61,8 @@ class App extends React.Component {
         'X-Requested-With': 'XMLHTTPRequest',
         'User-Agent' : 'NextThought OUCS Capstone 1920',
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        "Authorization": "Basic " + btoa(userName + ":" + passWord)
       }
     }).then(response => response.json().then((courseCatalog) => {
       const darkmode = urlParams.get('darkmode') || false
@@ -76,7 +80,13 @@ class App extends React.Component {
       else 
           source= courseCatalog['PlatformPresentationResources'[0]['href']]
       //console.log(courseCatalog['PlatformPresentationResources'[0]['href']])
-      this.setState({courses: [courseCatalog], direction, darkmode, courseId, courseURL,  coreHref: BASE_URL+courseCatalog['href'], imgURL: source})
+
+      let cardTitle =''
+      if(courseCatalog['ProviderDisplayName']==undefined) 
+          cardTitle="not found"
+      else 
+          cardTitle= courseCatalog['ProviderDisplayName']
+      this.setState({courses: [courseCatalog], direction, darkmode, courseId, courseURL,  coreHref: BASE_URL+courseCatalog['href'], imgURL: source, titleForCard:cardTitle})
     }))
 
 
