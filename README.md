@@ -3,9 +3,11 @@
 ## Overview
 This branch is used for the development and maintenance of embedable web elements. These web elements include course cards and course catalogues. Customers can embed these elements into their own sites with the help of the builder component.
 ## Installation
+This project uses npm version 6.13.4 and Node version v13.6.0.
 You can set up this environment on your own computer by following these steps:
 1. Clone the repository
-2. 
+2. Run 'npm install'
+3. Run 'npm run start'
 ## Course card 
 The course card components display the title, image, and quick description of any available course. The component can be altered in terms of light or dark mode and row or column display. You can embed this component using the builder component. You can find the javascript file for the course card under /src/src/components/Card.js .
 ## Catalogue 
