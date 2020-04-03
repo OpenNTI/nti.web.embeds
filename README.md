@@ -2,6 +2,10 @@
 
 ## Overview
 This branch is used for the development and maintenance of embedable web elements. These web elements include course cards and course catalogues. Customers can embed these elements into their own sites with the help of the builder component.
+## Prerequisites
+Before starting installation, make sure you have the following installed on your computer:
+- Node.js
+- npm
 ## Installation
 This project uses npm version 6.13.4 and Node version v13.6.0.
 You can set up this environment on your own computer by following these steps:
