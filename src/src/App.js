@@ -28,16 +28,20 @@ class App extends React.Component {
 
   componentDidMount = () => {
     let decodedURL = decodeURIComponent(window.location.search);
-    console.log(decodedURL)
+    console.log("After decodeURIComponent--- " + decodedURL)
     const urlParams = new URLSearchParams(decodedURL);      
-    const courseId = urlParams.get('courseID') 
-    //console.log(courseId)data
-    //const courseID = window.frameElement.getAttribute('data-courseID');
-    //const courseIDD = decodeURIComponent(courseId);
-    //console.log(courseIDD)
-    //console.log(window.location.search);
-    const nameCleaned = courseId.replace(/\s/g, '+')
-    console.log(nameCleaned)
+    console.log("After URLSearchParams--- " + urlParams)
+    //solution 1
+    // console.log("After split " + urlParams.toString().split("courseID=")[1])
+    // const courseId = urlParams.get('courseID') 
+    // console.log("After urlParams.get(CourseID)--- " + courseId);
+    // const nameCleaned = courseId.replace(/\s/g, '+')
+    // console.log("URL after hardcode--- " + nameCleaned)
+    //end solution 1
+
+    //Solution 2
+    let nameCleaned = decodedURL.toString().split("courseID=")[1];
+
     const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
     const HREF_SPECIFIC_TYPE = '__nti_object_href';
     const {btoa} = global; 
