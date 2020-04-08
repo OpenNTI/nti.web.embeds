@@ -23,3 +23,9 @@ The builder component allows users to select what component they would like to e
 - Link to course card -> 
 - Link to catalogue ->
 - Link to builder -> 
+
+### TODO
+user guide 
+  - once everything is up and running, this is what it should look like
+    - screenshots
+  - general info about the project
