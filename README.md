@@ -10,7 +10,7 @@ Before starting installation, make sure you have the following installed on your
 You can set up this environment on your own computer by following these steps:
 1. Clone the repository
 2. Open the Node.js command prompt
-3. Navigate to the WHAT FOLDER
+3. Navigate to the 'src' folder (relative path - nti.web.embeds/src)
 4. Run 'npm install'
 5. Run 'npm run start'
 ## Course card 
