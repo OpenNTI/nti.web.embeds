@@ -1,0 +1,80 @@
+<script>
+var fetch = require("node-fetch")
+
+function CallWebAPI() {
+    var BASE_URL = "https://alpha.nextthought.com"
+    var SERVICE_DOCS_URL = "https://alpha.nextthought.com/dataserver2/service"
+    var userName = "slidingsteven";
+    var passWord = "Capstone2020";
+    var CATALOG_URL = null;
+    fetch(SERVICE_DOCS_URL, {headers: {
+    "X-Requested-With":"XMLHTTPRequest",
+    "User-Agent":"NextThought OUCS Capstone 1920",
+    "Authorization": "Basic " + btoa(userName + ":" + passWord)
+}}).then(data => data.json()).then(data => {
+                var {
+                    //DCTitle, CourseNTIID
+                    Items, Class
+                } = data
+                let catNum = null;
+                for (let i=0; i < Items.length; i++){
+                    if(Items[i]["Title"] == "Catalog"){
+                        catNum = i;
+                    }
+                }
+                CATALOG_URL = BASE_URL + Items[catNum]["Items"][0]["href"]+"\n";//+Class
+                console.log(CATALOG_URL)
+                
+
+                //fetch the second URL
+                fetch(CATALOG_URL, {headers: {
+                    "X-Requested-With":"XMLHTTPRequest",
+                    "User-Agent":"NextThought OUCS Capstone 1920",
+                    "Authorization": "Basic " + btoa(userName + ":" + passWord)
+                }}).then(data => data.json()).then(data => {
+                                var {
+                                    //DCTitle, CourseNTIID
+                                    Items
+                                } = data
+                                for (let i =0; i<Items.length; i++){
+                                    console.log(i + " : " + Items[i]["DCTitle"] +" ---- " + Items[i]["ProviderDisplayName"])
+                                    if (Items[i]["PlatformPresentationResources"].length >0){
+                                        console.log(i + " : " + Items[i]["PlatformPresentationResources"][0]["PlatformName"])
+                                        console.log(i + " : " + Items[i]["PlatformPresentationResources"][0]["href"])
+
+                                    //     for(let j=0; j< Items[i]["PlatformPresentationResources"];j++){
+                                    //     if (Items[i]["PlatformPresentationResources"][j]["PlatformName"] == "iPad"){
+                                    //         console.log(i + " : " + Items[i]["PlatformPresentationResources"][j]["href"])
+                                            
+                                    //     }
+                                        
+                                    // }
+                                    }
+                                    else{
+                                        console.log(i + " : No resource URL")
+                                    }
+                                    for(let j=0; j< Items[i]["PlatformPresentationResources"];j++){
+                                        if (Items[i]["PlatformPresentationResources"][j]["PlatformName"] == "webapp"){
+                                            console.log(i + " : " + Items[i]["PlatformPresentationResources"][j]["href"])
+                                            
+                                        }
+                                        
+                                    }
+                                    // console.log(Items[i]["DCTitle"])
+                                    // console.log(Items[i]["ProviderDisplayName"])
+                                }
+                                
+                                //CATALOG_URL = BASE_URL + Items[catNum]["Items"][1]["href"]+"\n";//+Class
+
+                            })
+            })
+
+    
+}
+</script>
+
+<div>
+<div id="response">
+
+</div>
+<input type="button" class="btn btn-primary" value="Call Web API" onclick="CallWebAPI();" />
