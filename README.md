@@ -32,6 +32,7 @@ You can set up this environment on your own computer by following these steps:
 It should look like the following image
 ![](images/runimage.png)
 5. Make sure you keep the local server running as you follow the next steps (you can close out of the browser but don't stop the program).  This is the source that we need to pass to the iframes making up the catalog.
+
 6. You will have to clone the repo again, this time to a DIFFERENT directory than the one you've been using up till now and then fetch, checkout the catalog branch.  Below are the commands to do it:
 
    - mkdir CatalogApp
