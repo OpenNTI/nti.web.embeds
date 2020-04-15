@@ -43,11 +43,13 @@ It should look like the following image
 When these steps are done, the directory should look like this
 
 ![](images/newdir.png)
+
 7. Move to the src folder then build and run the app. You can do this by using the following commands:
      - cd Catalog/src
      - 'npm build'
      - 'npm run start'
      - If this does not work, run 'npm install' before 'npm build'
+     
 8. Go to http://localhost:3000/. You should see this:
 ![](images/catalogdark.png)
 ![](images/cataloglight.png)
