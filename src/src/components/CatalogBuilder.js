@@ -3,7 +3,7 @@ import { checkPropTypes } from 'prop-types';
 
 var _URL=""
 var style="row"
-var mode="light"
+var mode="true"
 var height="180px"
 var width="100%"
 
@@ -19,28 +19,28 @@ function styleRadioClick(sourceRad) {
         if (rowRad.checked == true) {
             colRad.checked = false;
             style="row";
-            height="180px";
-            width="100%";
+            height="500px";
+            width="910px";
         }
         else {
             colRad.checked = true;
-            style="col";
-            height="245px";
-            width="210px";
+            style="column";
+            height="490px";
+            width="910px";
         }
     }
     else {
         if (colRad.checked == true) {
             rowRad.checked = false;
-            style = "col";
-            height="245px";
-            width="210px";
+            style = "column";
+            height="490px";
+            width="910px";
         }
         else {
             rowRad.checked = true;
             style = "row";
-            height="180px";
-            width="100%";
+            height="500px";
+            width="910px";
         }
     }
     updateExtract();
@@ -53,37 +53,29 @@ function modeRadioClick(sourceRad) {
         if (lightRad.checked == true) {
             darkRad.checked = false;
             mode="false";
-			styling="border-style: ridge";
-
         }
         else {
             darkRad.checked = true;
             mode="true";
-			styling="border-style: none";
-
         }
     }
     else {
         if (darkRad.checked == true) {
             lightRad.checked = false;
             mode = "true";
-			styling="border-style: none";
 
         }
         else {
             lightRad.checked = true;
             mode = "false";
-			styling="border-style: ridge";
-
         }
     }
     updateExtract();
 }
 function updateExtract() {
     var extract = document.getElementById("extract");
-    //var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "; width: " + width + "; \" /&gt;";
-	var text = `&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}' style='${styling}' &gt; &lt;/iframe&gt`
-
+	var text = `&lt;iFrame src='http://127.0.0.1:3006/?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='{width}'  sandbox='allow-scripts allow-top-navigation'/&gt;`;
+    
     extract.innerHTML = text;
 }
 function toggleMode() {
@@ -111,40 +103,26 @@ function StyleRadioButton(props) {
 function ModeRadioButton(props) {
     return <input type="radio" value={props.name} id={props.id} onChange={modeRadioClick(this)}>
 }
-const CatalogBuilder = (props) => (
-  <a href="#" style={{textDecoration: 'none'}}>
-  <div scrolling="no" style={{
-    backgroundColor: props.darkMode ? '#333340':'white',
-    maxHeight:"250px",
-    height: '100%',
-    width: 'fit-content',
-    padding: 8,
-    maxWidth: props.direction == 'row' ? 'none' : "225px",
-    display: 'flex',
-    flexDirection: props.direction,
-    
-    boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
-
-  }}> 
-    <div onload="updateExtract()" id={props.name} style="font-family: Helvetica, "sans-serif"; background-color: #e8ffef; background-blend-mode: lighten; padding: 10px; margin: 10px; width: 60%; min-width: 715px; display: block; margin-left: auto; margin-right: auto; box-shadow: 10px 10px 8px grey;">
-      <Title name="Catalog Builder"/>
-      <Header name="URL"/>
-      <TextInput name="URL"/>
-      <Header name="Style"/>
-      <StyleRadioButton props.name="row" props.id="rowRad"/>
-      <Label name="Row"/>
-      <StyleRadioButton props.name="col" props.id="colRad"/>
-      <Label name="Column"/>
-      <Header name="Mode"/>
-      <ModeRadioButton props.name="light" props.id="lightRad"/>
-      <Label name="Light"/>
-      <ModeRadioButton props.name="dark" props.id="darkRad"/>
-      <Label name="dark"/>
-      <Header name="Copy the text below into your page. ..."/>
-      <Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' height='180px' width='100%' style='border-style: ridge'/&gt;"/>
- 
-    </div>
-  </div></a>
-  )
-
-export default CatalogBuilder
+class CatalogBuilder extends React.Component {
+    render () {
+        return (
+            <div onload="updateExtract()" id={props.name} style="font-family: Helvetica, "sans-serif"; background-color: #e8ffef; background-blend-mode: lighten; padding: 10px; margin: 10px; width: 60%; min-width: 715px; display: block; margin-left: auto; margin-right: auto; box-shadow: 10px 10px 8px grey;">
+                <Title name="Catalog Builder"/>
+                <Header name="URL"/>
+                <TextInput name="URL"/>
+                <Header name="Style"/>
+                <StyleRadioButton props.name="row" props.id="rowRad"/>
+                <Label name="List"/>
+                <StyleRadioButton props.name="col" props.id="colRad"/>
+                <Label name="Grid"/>
+                <Header name="Mode"/>
+                <ModeRadioButton props.name="light" props.id="lightRad"/>
+                <Label name="Light"/>
+                <ModeRadioButton props.name="dark" props.id="darkRad"/>
+                <Label name="Dark"/>
+                <Header name="Copy the text below into your page. ..."/>
+                <Extract name="&lt;iFrame src='http://127.0.0.1:3000/?darkmode=true&direction=row&courseID=' height='500px' width='910px'  sandbox='allow-scripts allow-top-navigation'/&gt;"/>
+            </div>        
+        );
+    }
+}

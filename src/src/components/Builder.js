@@ -18,27 +18,16 @@ function builderSelected() {
 function VisiblePane(props) {
     return <div id="demo"></div>;
 }
-const Builder = (props) => (
-  <a href="#" style={{textDecoration: 'none'}}>
-  <div scrolling="no" style={{
-    backgroundColor: props.darkMode ? '#333340':'white',
-    maxHeight:"250px",
-    height: '100%',
-    width: 'fit-content',
-    padding: 8,
-    maxWidth: props.direction == 'row' ? 'none' : "225px",
-    display: 'flex',
-    flexDirection: props.direction,
-    
-    boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
+class Builder extends React.Component {
+    render() {
+        return (
+            <div onload="updateExtract()">
+                <Title name="Builder"/> 
+                <BuilderSelect/> 
+                <VisiblePane/>
+            </div>
+        );
+    }
+}
 
-  }}> 
-    <div onload="updateExtract()" style="font-family: Helvetica, "sans-serif"; background-color: #e8ffef; background-blend-mode: lighten; padding: 10px; margin: 10px; width: 60%; min-width: 715px; display: block; margin-left: auto; margin-right: auto; box-shadow: 10px 10px 8px grey;">
-      <Title name="Builder"/>
-      <BuilderSelect/>
-      <VisiblePane/>
-    </div>
-  </div></a>
-  )
-
-export default Builder
+ReactDOM.render(<Builder/>, document.getElementById('root'));

@@ -81,8 +81,7 @@ function modeRadioClick(sourceRad) {
 }
 function updateExtract() {
     var extract = document.getElementById("extract");
-    //var text="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height: " + height + "; width: " + width + "; \" /&gt;";
-	var text = `&lt;iframe src = 'http://127.0.0.1:3000/build/index.html?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}' style='${styling}' &gt; &lt;/iframe&gt`
+	var text = `&lt;iframe src = 'http://127.0.0.1:3006/build/index.html?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}' style='${styling}' &gt; &lt;/iframe&gt`
 
     extract.innerHTML = text;
 }
@@ -111,40 +110,27 @@ function StyleRadioButton(props) {
 function ModeRadioButton(props) {
     return <input type="radio" value={props.name} id={props.id} onChange={modeRadioClick(this)}>
 }
-const CourseCardBuilder = (props) => (
-  <a href="#" style={{textDecoration: 'none'}}>
-  <div scrolling="no" style={{
-    backgroundColor: props.darkMode ? '#333340':'white',
-    maxHeight:"250px",
-    height: '100%',
-    width: 'fit-content',
-    padding: 8,
-    maxWidth: props.direction == 'row' ? 'none' : "225px",
-    display: 'flex',
-    flexDirection: props.direction,
-    
-    boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
-
-  }}> 
-    <div onload="updateExtract()" id={props.name} style="font-family: Helvetica, "sans-serif"; background-color: #e8ffef; background-blend-mode: lighten; padding: 10px; margin: 10px; width: 60%; min-width: 715px; display: block; margin-left: auto; margin-right: auto; box-shadow: 10px 10px 8px grey;">
-      <Title name="Course Card Builder"/>
-      <Header name="Course URL"/>
-      <TextInput name="CourseURL"/>
-      <Header name="Style"/>
-      <StyleRadioButton props.name="row" props.id="rowRad"/>
-      <Label name="Row"/>
-      <StyleRadioButton props.name="col" props.id="colRad"/>
-      <Label name="Column"/>
-      <Header name="Mode"/>
-      <ModeRadioButton props.name="light" props.id="lightRad"/>
-      <Label name="Light"/>
-      <ModeRadioButton props.name="dark" props.id="darkRad"/>
-      <Label name="dark"/>
-      <Header name="Copy the text below into your page. ..."/>
-      <Extract name="&lt;iFrame src='http://127.0.0.1:5500/build/index.html?darkmode=false&direction=row&courseID=' height='180px' width='100%' style='border-style: ridge'/&gt;"/>
- 
-    </div>
-  </div></a>
-  )
-
+class CourseCardBuilder extends React.Component {
+    render() {
+        return (
+            <div onload="updateExtract()" id={props.name} style="font-family: Helvetica, "sans-serif"; background-color: #e8ffef; background-blend-mode: lighten; padding: 10px; margin: 10px; width: 60%; min-width: 715px; display: block; margin-left: auto; margin-right: auto; box-shadow: 10px 10px 8px grey;">
+                <Title name="Course Card Builder"/>
+                <Header name="Course URL"/>
+                <TextInput name="CourseURL"/>
+                <Header name="Style"/>
+                <StyleRadioButton props.name="row" props.id="rowRad"/>
+                <Label name="Row"/>
+                <StyleRadioButton props.name="col" props.id="colRad"/>
+                <Label name="Column"/>
+                <Header name="Mode"/>
+                <ModeRadioButton props.name="light" props.id="lightRad"/>
+                <Label name="Light"/>
+                <ModeRadioButton props.name="dark" props.id="darkRad"/>
+                <Label name="Dark"/>
+                <Header name="Copy the text below into your page. ..."/>
+                <Extract name="&lt;iFrame src='http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID=' height='180px' width='100%' style='border-style: ridge'/&gt;"/>
+            </div>
+        );
+    }
+}
 export default CourseCardBuilder
