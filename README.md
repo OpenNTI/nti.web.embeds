@@ -28,7 +28,7 @@ You can set up this environment on your own computer by following these steps:
 
 3. Run the following commands in your command terminal:
   - 'npm build' -or (Mac users)- 'npm run-script build' (First time only!)
-  - 'npm run start'
+  - npm run start
 
 4. Go to this link: http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry 
 
@@ -54,11 +54,12 @@ It should look like the following image
 When these steps are done, the directory should look like this
 
 ![](images/newdir.png)
+7. Open a second command terminal. **Do not terminate the first one; keep that one running. Open a fresh, second one.
 
-7. Move to the src folder then build and run the app. You can do this by using the following commands:
-     - cd Catalog/src
-     - 'npm build'
-     - 'npm run start'
+8. Navigate to the src folder. Build and run the app. You can do this by using the following commands:
+     - cd nti.web.embeds/src
+     - npm build
+     - npm run start
      - If this does not work, run 'npm install' before 'npm build'
      
 8. Go to http://localhost:3000/. You should see this:
