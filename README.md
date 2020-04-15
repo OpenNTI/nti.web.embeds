@@ -54,6 +54,7 @@ It should look like the following image
 When these steps are done, the directory should look like this
 
 ![](images/newdir.png)
+
 7. Open a second command terminal. **Do not terminate the first one; keep that one running. Open a fresh, second one.
 
 8. Navigate to the src folder. Build and run the app. You can do this by using the following commands:
