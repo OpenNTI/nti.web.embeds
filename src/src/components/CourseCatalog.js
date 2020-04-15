@@ -15,9 +15,13 @@ class CourseCatalog extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-          courses: [], //These are the items from the course catalog
+            courses: [], //These are the items from the course catalog
+
+
         }
       }
+
+
     
     // async so we can "await" API call - examples here https://javascript.info/async-await
         async getCourseInformation(){
@@ -52,35 +56,7 @@ class CourseCatalog extends React.Component{
                                 } = data
                                 this.setState({courses:Items}) //This sets the catalog of courses
                                 console.log(this.state.courses[0].href)
-                                // for (let i =0; i<Items.length; i++){
-                                //     console.log(i + " : " + Items[i]["DCTitle"] +" ---- " + Items[i]["ProviderDisplayName"])
-                                //     if (Items[i]["PlatformPresentationResources"].length >0){
-                                //         console.log(i + " : " + Items[i]["PlatformPresentationResources"][0]["PlatformName"])
-                                //         console.log(i + " : " + Items[i]["PlatformPresentationResources"][0]["href"])
 
-                                //     //     for(let j=0; j< Items[i]["PlatformPresentationResources"];j++){
-                                //     //     if (Items[i]["PlatformPresentationResources"][j]["PlatformName"] == "iPad"){
-                                //     //         console.log(i + " : " + Items[i]["PlatformPresentationResources"][j]["href"])
-                                            
-                                //     //     }
-                                        
-                                //     // }
-                                //     }
-                                //     else{
-                                //         console.log(i + " : No resource URL")
-                                //     }
-                                //     for(let j=0; j< Items[i]["PlatformPresentationResources"];j++){
-                                //         if (Items[i]["PlatformPresentationResources"][j]["PlatformName"] == "webapp"){
-                                //             console.log(i + " : " + Items[i]["PlatformPresentationResources"][j]["href"])
-                                            
-                                //         }
-                                        
-                                //     }
-                                //     // console.log(Items[i]["DCTitle"])
-                                //     // console.log(Items[i]["ProviderDisplayName"])
-                                // }
-                                
-                                //CATALOG_URL = BASE_URL + Items[catNum]["Items"][1]["href"]+"\n";//+Class
 
                             })
                     })
@@ -90,55 +66,61 @@ class CourseCatalog extends React.Component{
         
         componentDidMount(){
             this.getCourseInformation()
-        
+            let decodedURL = decodeURIComponent(window.location.search);
+
+            const urlParams = new URLSearchParams(decodedURL);  
+            const darkmode = urlParams.get('darkmode') || false       
+            const direction = urlParams.get('direction') || 'column'
+
+            let isCol = direction == 'column' || direction == 'col'
+            console.log("From didMount " + darkmode)
+            console.log("From didMount " + direction)
+            this.setState({darkmode,  direction});
+
         }
       render(){
-          //
-          
-          //console.log("Hi");
-          //console.log(this.state.courses);
 
-        //   return (
-        //     //Directly from the App.js file
-        //     <div className="App" id="catologcomponent" >
-        //         {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
-        //                                   description={course.DCTitle} 
-        //                                   //image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
-        //                                   direction={this.state.direction}
-                                          
-        //                                   //maybe this needs to be 
-        //                                   //BASE_URL+
-        //                                   href={this.state.coreHref}
-        //                                   // courseURL = {this.state.courseURL}
-        //                                   darkMode={this.state.darkmode}
-        //                                   courseURL = {this.state.courseURL}
-        //                                   //darkMode='true'
-                                        
-        //                                   />)
+        let decodedURL = decodeURIComponent(window.location.search);
 
-        //         }
-                
-        //     </div>
-        // )
-                //var obj =JSON.parse(this.state.courses)
-                    //console.log(obj)
+        const urlParams = new URLSearchParams(decodedURL);  
+        const darkmode = urlParams.get('darkmode') || false       
+        const direction = urlParams.get('direction') || 'column'
 
+        let isCol = direction == 'column' || direction == 'col'
+        console.log("From didMount " + darkmode)
+        console.log("From didMount " + direction)
+        console.log("From Render " + this.state.darkMode)
+        console.log("From Render " + this.state.direction)
 
+        //if row set vals to this height='180px' width='100%'
+        let iframe_height;
+        let iframe_width;
+        if(direction =='row'){
+            iframe_height= '180px'
+            iframe_width='100%'
+        }
+        else { //if row
+            iframe_height='245px' 
+            iframe_width='210px'
+        }
+                    
 
 
         return(
             <div className="App" id="catologcomponent">
                 {
+                    
                 //Column Catalog dark mode
-                    this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=true&direction=column&courseID='+BASE_URL+ course.href} height='245px' width='210px' 
-                    style={{'border-style': 'ridge'}}></iframe>)  
-                //Column Catalog light mode
-                    //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=column&courseID='+BASE_URL+ course.href} height='245px' width='210px' 
+                    //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=true&direction=column&courseID='+BASE_URL+ course.href} height='245px' width='210px' 
                     //style={{'border-style': 'ridge'}}></iframe>)  
+                //Column Catalog light mode
+                    // this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=column&courseID='+BASE_URL+ course.href} height='245px' width='210px' 
+                    // style={{'border-style': 'ridge'}}></iframe>)  
                 
                 //Row Catalog dark mode
-                    //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=true&direction=row&courseID='+BASE_URL+ course.href} height='180px' width='100%' 
-                    //style={{'border-style': 'ridge'}}></iframe>) 
+                    this.state.courses.map((course, index) => index>10? null : <iframe src = {`http://127.0.0.1:3006/build/index.html?darkmode=${darkmode}&direction=${direction}&courseID=`+BASE_URL+ course.href} height={iframe_height} width={iframe_width} 
+                    style={{'border-style': 'ridge'}}hspace="30" vspace="10"></iframe>) 
+
                 //Row Catalog light mode
                     //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID='+BASE_URL+ course.href} height='180px' width='100%' 
                     //style={{'border-style': 'ridge'}}></iframe>)  

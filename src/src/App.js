@@ -28,13 +28,6 @@ class App extends React.Component {
     console.log(decodedURL)
     const urlParams = new URLSearchParams(decodedURL);      
     const courseId = urlParams.get('courseID') 
-    //console.log(courseId)data
-    //const courseID = window.frameElement.getAttribute('data-courseID');
-    //const courseIDD = decodeURIComponent(courseId);
-    //console.log(courseIDD)
-    //console.log(window.location.search);
-    //const nameCleaned = courseId.replace(/\s/g, '+')
-    //console.log(nameCleaned)
     const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
     const HREF_SPECIFIC_TYPE = '__nti_object_href';
     const {btoa} = global; 
@@ -51,25 +44,14 @@ class App extends React.Component {
       //BASE URL SHOULD GO HERE  https://alpha.nextthought.com
       return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
     }
-     //props.courseURL 
-    // fetch(nameCleaned, {
-    //      // fetch(REQ_URL, {
-    //   headers: {
-    //     'X-Requested-With': 'XMLHTTPRequest',
-    //     'User-Agent' : 'NextThought OUCS Capstone 1920',
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json'
-    //   }
-    // }).then(response => response.json().then((courseCatalog) => {
+
        const darkmode = urlParams.get('darkmode') || false
        const direction = urlParams.get('direction') || 'column'
-      // courseId = null;// urlParams.get('courseID') || ''
       
       const courseURL = null;// getRouteForCatalogEntry(courseCatalog);
-    //   //console.log(BASE_URL+ courseCatalog['href'])
-    //   console.log(courseCatalog)
+
        this.setState({courses: null, direction, darkmode, courseId, courseURL,  coreHref: null})// BASE_URL+courseCatalog['href']})
-    // }))
+    
   }
 
 
@@ -80,20 +62,7 @@ class App extends React.Component {
         <div className="App" id="App">
           {
             <CourseCatalog />
-          /* <div>
-
-            {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
-            description={course.DCTitle} 
-            image={BASE_URL+course.PlatformPresentationResources[0].href + IMAGE_NAME}
-            direction={this.state.direction}
-
-            //maybe this needs to be 
-            //BASE_URL+
-            href={this.state.coreHref}
-            courseURL = {this.state.courseURL}
-            darkMode={this.state.darkmode == 'true'} />)} 
-
-          </div>*/}
+          }
         </div>
     )
   }
