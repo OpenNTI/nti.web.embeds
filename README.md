@@ -21,7 +21,8 @@ You can set up this environment on your own computer by following these steps:
 3. Run the following commands in your command terminal:
   - 'npm build' -or (Mac users)- 'npm run-script build' (First time only!)
   - 'npm run start'
-4. Go to this link: http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry
+4. Go to this link: http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry 
+
 It should look like the following image
 ![](images/runimage.png)
 5. Make sure you keep the local server running as you follow the next steps (you can close out of the browser but don't stop the program).  This is the source that we need to pass to the iframes making up the catalog.
@@ -37,8 +38,10 @@ It should look like the following image
 
    - git checkout catalog
 
-   - cd ..
+   - cd .. 
+   
 When these steps are done, the directory should look like this
+
 ![](images/newdir.png)
 7. Move to the src folder then build and run the app. You can do this by using the following commands:
      - cd Catalog/src
