@@ -22,15 +22,19 @@ You can set up this environment on your own computer by following these steps:
 4. Run 'npm install'
 ## How to run (User guide)
 1. Make sure to pull the latest version
+
 2. Make sure your package.json (found in src directory) file shows this.  *If it does now show the correct line in the boxed region, fix before continuing. **It will not work if you miss this!**
 ![](images/step5.png)
+
 3. Run the following commands in your command terminal:
   - 'npm build' -or (Mac users)- 'npm run-script build' (First time only!)
   - 'npm run start'
+
 4. Go to this link: http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry 
 
 It should look like the following image
 ![](images/runimage.png)
+
 5. Make sure you keep the local server running as you follow the next steps (you can close out of the browser but don't stop the program).  This is the source that we need to pass to the iframes making up the catalog.
 
 6. You will have to clone the repo again, this time to a DIFFERENT directory than the one you've been using up till now and then fetch, checkout the catalog branch.  Below are the commands to do it:
