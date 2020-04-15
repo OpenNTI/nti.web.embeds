@@ -14,7 +14,7 @@ You can set up this environment on your own computer by following these steps:
 2. Open the Node.js command prompt
 3. Navigate to the 'src' folder (relative path - nti.web.embeds/src)
 4. Run 'npm install'
-## How to run
+## How to run (User guide)
 1. Make sure to pull the latest version
 2. Make sure your package.json (found in src directory) file shows this.  *If it does now show the correct line in the boxed region, fix before continuing. **It will not work if you miss this!**
 ![](images/step5.png)
