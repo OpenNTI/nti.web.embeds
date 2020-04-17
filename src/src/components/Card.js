@@ -22,7 +22,7 @@ const Card = (props) => (
     boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
 
   }}> 
-    <img src={props.image} />
+    <img src={props.image} height="232" width="170" />
 
     <div style={{margin: 'auto 0'}}>
       <p style={{color: props.darkMode ? 'white' : 'gray', fontWeight: '500'}}>{props.title}</p> 
