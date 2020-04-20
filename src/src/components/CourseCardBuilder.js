@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { checkPropTypes } from 'prop-types';
 
 var courseURL=""
 var style="row"
-var mode="light"
+var mode="false"
 var height="180px"
 var width="100%"
+var styling="border-style: none"
 
 function courseURL_Entered(val) {
     courseURL = encodeURIComponent(val);
@@ -85,10 +86,6 @@ function updateExtract() {
 
     extract.innerHTML = text;
 }
-function toggleMode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-}
 function Label(props) {
     return <label>{props.name}</label>;
 }
@@ -133,4 +130,5 @@ class CourseCardBuilder extends React.Component {
         );
     }
 }
-export default CourseCardBuilder
+
+export default CourseCardBuilder;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { checkPropTypes } from 'prop-types';
 
 var _URL=""
@@ -74,13 +74,9 @@ function modeRadioClick(sourceRad) {
 }
 function updateExtract() {
     var extract = document.getElementById("extract");
-	var text = `&lt;iFrame src='http://127.0.0.1:3006/?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='{width}'  sandbox='allow-scripts allow-top-navigation'/&gt;`;
+	var text = `&lt;iFrame src='http://127.0.0.1:3006/?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}'  sandbox='allow-scripts allow-top-navigation'/&gt;`;
     
     extract.innerHTML = text;
-}
-function toggleMode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
 }
 function Label(props) {
     return <label>{props.name}</label>;
@@ -126,3 +122,5 @@ class CatalogBuilder extends React.Component {
         );
     }
 }
+
+export default CatalogBuilder;

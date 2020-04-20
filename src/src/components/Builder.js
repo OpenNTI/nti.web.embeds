@@ -30,4 +30,6 @@ class Builder extends React.Component {
     }
 }
 
+export default Builder;
+
 ReactDOM.render(<Builder/>, document.getElementById('root'));
