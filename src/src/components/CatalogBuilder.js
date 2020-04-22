@@ -6,6 +6,7 @@ var style="row"
 var mode="true"
 var height="180px"
 var width="100%"
+var scroll=""
 
 function courseURL_Entered(val) {
     _URL = encodeURIComponent(val);
@@ -72,6 +73,33 @@ function modeRadioClick(sourceRad) {
     }
     updateExtract();
 }
+function scrollRadioClick(sourceRad) {
+    var scrollRad = document.getElementById("scrollRad");
+    var noScrollRad = document.getElementById("noScrollRad");
+    
+    if (sourceRad == lightRad) {
+        if (scrollRad.checked == true) {
+            noScrollRad.checked = false;
+            scroll="true";
+        }
+        else {
+            noScrollRad.checked = true;
+            scroll="false";
+        }
+    }
+    else {
+        if (noScrollRad.checked == true) {
+            scrollRad.checked = false;
+            scroll = "false";
+
+        }
+        else {
+            scrollRad.checked = true;
+            scroll = "true";
+        }
+    }
+    updateExtract();
+}
 function updateExtract() {
     var extract = document.getElementById("extract");
 	var text = `&lt;iFrame src='http://127.0.0.1:3006/?darkmode=${mode}&direction=${style}&courseID=${courseURL}' height='${height}' width='${width}'  sandbox='allow-scripts allow-top-navigation'/&gt;`;
@@ -99,6 +127,9 @@ function StyleRadioButton(props) {
 function ModeRadioButton(props) {
     return <input type="radio" value={props.name} id={props.id} onChange={modeRadioClick(this)}>
 }
+function ScrollBarRadioButton(props) {
+    return <input type="radio" value={props.name} id={props.id} onChange={scrollRadioClick(this)}>
+}
 class CatalogBuilder extends React.Component {
     render () {
         return (
@@ -116,6 +147,11 @@ class CatalogBuilder extends React.Component {
                 <Label name="Light"/>
                 <ModeRadioButton props.name="dark" props.id="darkRad"/>
                 <Label name="Dark"/>
+                <Header name="Scroll bar" />
+                <ScrollBarRadioButton props.name="scroll" props.id="scrollRad"/>
+                <Label name="Yes"/>
+                <ScrollBarRadioButton props.name="noScroll" props.id="noScrollRad"/>
+                <Label name="No"/>
                 <Header name="Copy the text below into your page. ..."/>
                 <Extract name="&lt;iFrame src='http://127.0.0.1:3000/?darkmode=true&direction=row&courseID=' height='500px' width='910px'  sandbox='allow-scripts allow-top-navigation'/&gt;"/>
             </div>        

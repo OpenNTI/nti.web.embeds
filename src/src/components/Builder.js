@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import CatalogBuilder from './CatalogBuilder';
+import CourseCardBuilder from './CourseCardBuilder';
 import { checkPropTypes } from 'prop-types';
 
 function Title(props) {
