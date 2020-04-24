@@ -45,8 +45,9 @@ class App extends React.Component {
       } 
     } 
     function getRouteForCatalogEntry(entry) { 
-      //BASE URL SHOULD GO HERE  https://alpha.nextthought.com
-      return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
+      //BASE URL SHOULD GO HERE  
+      let BASE = 'https://alpha.nextthought.com'
+      return BASE+ `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
     }
      //props.courseURL 
     fetch(nameCleaned, {
@@ -65,26 +66,52 @@ class App extends React.Component {
       console.log(courseCatalog)
 
       //ASSIGNING THE IMAGE,  THIS IS WHAT IS WRONG
-      let source=defaultClassCard//source for image
-      if(courseCatalog['PlatformPresentationResources'][0]==undefined ||courseCatalog['PlatformPresentationResources'][0]['href']==undefined){
-          source=defaultClassCard
-      } else {
-          //source= BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
-          let newsrc = BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
-          fetch(newsrc).then(function(response) {
-            console.log("CHECKING IF VALID")
-            console.log(response.status); // returns 200
-            if (response.status.toString() == '404'){
-              console.log("WAS 404")
-              source=defaultClassCard
-              console.log("TRY TO CHANGE SOURCE " + source)
-            }
-            else{
-              console.log("WAS 200")
-              source = newsrc
-              console.log("SOURCE CHANGE TO " + source)
-            }
-          });
+      //let source; //BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME//source for image
+      // if(courseCatalog['PlatformPresentationResources'][0]==undefined ||courseCatalog['PlatformPresentationResources'][0]['href']==undefined){
+      //     source=defaultClassCard
+      // } else {
+      //     //source= BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
+      //     let newsrc = BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
+      //     fetch(newsrc).then(function(response) {
+      //       console.log("CHECKING IF VALID")
+      //       console.log(response.status); // returns 200
+      //       if (response.status.toString() == '404'){
+      //         console.log("WAS 404")
+      //         source=defaultClassCard
+      //         console.log("TRY TO CHANGE SOURCE " + source)
+      //       }
+      //       else{
+      //         console.log("WAS 200")
+      //         source = newsrc
+      //         console.log("SOURCE CHANGE TO " + source)
+      //       }
+      //     });
+      //   }
+
+        try{
+                    
+                    var source= BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
+                    let newsrc = BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
+                    fetch(newsrc).then(function(response) {
+                      console.log("CHECKING IF VALID")
+                      console.log(response.status); // returns 200
+                      //if (response.status.toString() == '404'){
+                      if(response.status == 200){
+                        console.log("WAS 200")
+                        source = newsrc
+                        console.log("SOURCE CHANGE TO " + source)
+
+                      }
+                      else{
+                        console.log("WAS 404")
+                        source=defaultClassCard
+                        console.log("TRY TO CHANGE SOURCE " + source)
+                      }
+                    });
+        }
+        catch(err){
+          var source=defaultClassCard
+
         }
       console.log("SOURCE " +source)
 
@@ -104,8 +131,9 @@ class App extends React.Component {
 
   render(){
     return (
-        <div className="App">
-          <div>
+    
+    <div className="App" style={{borderRadius: '20px', backgroundColor:"#960207"}}>
+          <div style={{borderRadius: '20px', backgroundColor:"#960207"}}>
             {this.state.courses.map(course => <Card title={course.ProviderDisplayName}
             description={course.DCTitle} 
             image={this.state.imgURL}
