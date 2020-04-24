@@ -1,7 +1,7 @@
 import React from 'react';
 import { checkPropTypes } from 'prop-types';
 import Card from './Card';
-
+//import './catalog.css'
 
 var BASE_URL = "https://alpha.nextthought.com"
 var TEMP_URL = "/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry"
@@ -44,7 +44,7 @@ class CourseCatalog extends React.Component{
                             }
                         }
                         CATALOG_URL = BASE_URL + Items[catNum]["Items"][0]["href"]+"\n";//+Class
-                        console.log(CATALOG_URL)
+                        //console.log(CATALOG_URL)
                         //fetch the second URL for the course catalog
                         fetch(CATALOG_URL, {headers: {
                             "X-Requested-With":"XMLHTTPRequest",
@@ -73,8 +73,8 @@ class CourseCatalog extends React.Component{
             const direction = urlParams.get('direction') || 'column'
 
             let isCol = direction == 'column' || direction == 'col'
-            console.log("From didMount " + darkmode)
-            console.log("From didMount " + direction)
+            // console.log("From didMount " + darkmode)
+            // console.log("From didMount " + direction)
             this.setState({darkmode,  direction});
 
         }
@@ -87,16 +87,16 @@ class CourseCatalog extends React.Component{
         const direction = urlParams.get('direction') || 'column'
 
         let isCol = direction == 'column' || direction == 'col'
-        console.log("From didMount " + darkmode)
-        console.log("From didMount " + direction)
-        console.log("From Render " + this.state.darkMode)
-        console.log("From Render " + this.state.direction)
+        // console.log("From didMount " + darkmode)
+        // console.log("From didMount " + direction)
+        // console.log("From Render " + this.state.darkMode)
+        // console.log("From Render " + this.state.direction)
 
         //if row set vals to this height='180px' width='100%'
         let iframe_height;
         let iframe_width;
         if(direction =='row'){
-            iframe_height= '180px'
+            iframe_height= '250px'
             iframe_width='100%'
         }
         else { //if row
@@ -107,7 +107,7 @@ class CourseCatalog extends React.Component{
 
 
         return(
-            <div className="App" id="catologcomponent">
+            <div className="App" id="catologcomponent" style={{backgroundColor:"#960207",paddingBottom:"15px;", paddingRight:"15px;"}}>
                 {
                     
                 //Column Catalog dark mode
@@ -118,8 +118,8 @@ class CourseCatalog extends React.Component{
                     // style={{'border-style': 'ridge'}}></iframe>)  
                 
                 //Row Catalog dark mode
-                    this.state.courses.map((course, index) => index>10? null : <iframe src = {`http://127.0.0.1:3006/build/index.html?darkmode=${darkmode}&direction=${direction}&courseID=`+BASE_URL+ course.href} height={iframe_height} width={iframe_width} 
-                    style={{'border-style': 'ridge'}}hspace="30" vspace="10"></iframe>) 
+                    this.state.courses.map((course, index) => index>10? null : <> <iframe src = {`http://127.0.0.1:3006/build/index.html?darkmode=${darkmode}&direction=${direction}&courseID=`+BASE_URL+ course.href} height={iframe_height} width={iframe_width} 
+                    style={{'border-style': 'ridge', borderRadius: '20px', backgroundColor:"#960207"}}></iframe> </>) 
 
                 //Row Catalog light mode
                     //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID='+BASE_URL+ course.href} height='180px' width='100%' 
@@ -131,7 +131,7 @@ class CourseCatalog extends React.Component{
                     //style={{'border-style': 'ridge'}}></iframe>)  
                 }
                 
-                
+                &nbsp;&nbsp;&nbsp;
             </div>
         )
 

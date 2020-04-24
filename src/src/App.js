@@ -25,7 +25,7 @@ class App extends React.Component {
 
   componentDidMount = () => {
     let decodedURL = decodeURIComponent(window.location.search);
-    console.log(decodedURL)
+//    console.log(decodedURL)
     const urlParams = new URLSearchParams(decodedURL);      
     const courseId = urlParams.get('courseID') 
     const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
@@ -56,10 +56,11 @@ class App extends React.Component {
 
 
   render(){
-    console.log(this.state.coreHref);
+    //console.log(this.state.coreHref);
     
     return (
         <div className="App" id="App">
+          
           {
             <CourseCatalog />
           }
