@@ -45,9 +45,9 @@ It should look like the following image
 
    - git clone  https://github.com/NextThought/nti.web.embeds.git
 
-   - git fetch origin catalog
+   - git fetch origin CatalogApp
 
-   - git checkout catalog
+   - git checkout CatalogApp
 
    - cd .. 
    
