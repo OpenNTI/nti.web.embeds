@@ -73,7 +73,7 @@ http://localhost:3000/?darkmode=true&direction=row
  
 http://localhost:3000/?darkmode=false&direction=row
  
-http://localhost:3000/?darkmode=true&direction=column\
+http://localhost:3000/?darkmode=true&direction=column
  
 http://localhost:3000/?darkmode=false&direction=column 
 
