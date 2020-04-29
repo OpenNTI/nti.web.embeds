@@ -3,12 +3,12 @@ import Card from './components/Card';
 import Frame from './components/Frame';
 import courseCatalog from './components/CourseCatalog';
 import CourseCatalog from './components/CourseCatalog';
+import styles from './components/catalog.module.css' //this should be able to disable the scrolling but cant get it to work
 
 const BASE_URL = 'https://alpha.nextthought.com'
 const REQ_URL = BASE_URL+'/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry'
 const IMAGE_NAME = 'contentpackage-landing-232x170.png'
-//const REQ_IMG_URL = BASE_URL+'https://alpha.nextthought.comcontent/sites/alpha.nextthought.com/Courses/DefaultAPICreated/OUCS-1/presentation-assets/webapp/v1/contentpackage-landing-232x170.png'
-//https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry
+
 class App extends React.Component {
 
   constructor(props){
@@ -25,7 +25,6 @@ class App extends React.Component {
 
   componentDidMount = () => {
     let decodedURL = decodeURIComponent(window.location.search);
-//    console.log(decodedURL)
     const urlParams = new URLSearchParams(decodedURL);      
     const courseId = urlParams.get('courseID') 
     const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
@@ -41,7 +40,6 @@ class App extends React.Component {
       } 
     } 
     function getRouteForCatalogEntry(entry) { 
-      //BASE URL SHOULD GO HERE  https://alpha.nextthought.com
       return `/app/catalog/nti-course-catalog-entry/${encodeIdFrom(entry.href)}`;
     }
 
@@ -55,12 +53,9 @@ class App extends React.Component {
   }
 
 
-  render(){
-    //console.log(this.state.coreHref);
-    
+  render(){    
     return (
-        <div className="App" id="App">
-          
+        <div className={styles.noScrollTrial} id="App">
           {
             <CourseCatalog />
           }

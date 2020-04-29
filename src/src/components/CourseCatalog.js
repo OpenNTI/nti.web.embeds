@@ -1,7 +1,7 @@
 import React from 'react';
 import { checkPropTypes } from 'prop-types';
 import Card from './Card';
-//import './catalog.css'
+import styles from './catalog.module.css'
 
 var BASE_URL = "https://alpha.nextthought.com"
 var TEMP_URL = "/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry"
@@ -27,14 +27,11 @@ class CourseCatalog extends React.Component{
         async getCourseInformation(){
           var fetch = require("node-fetch")
             // TODO #1: Make request and then grab whatever endpoints and make another one till you get the course items
-
-
             fetch(SERVICE_DOCS_URL, {headers: {
                     "X-Requested-With":"XMLHTTPRequest",
                     "User-Agent":"NextThought OUCS Capstone 1920",
                     "Authorization": "Basic " + btoa(userName + ":" + passWord)}}).then(data => data.json()).then(data => {
                         var {
-                            //DCTitle, CourseNTIID
                             Items
                         } = data
                         let catNum = null;
@@ -44,14 +41,11 @@ class CourseCatalog extends React.Component{
                             }
                         }
                         CATALOG_URL = BASE_URL + Items[catNum]["Items"][0]["href"]+"\n";//+Class
-                        //console.log(CATALOG_URL)
-                        //fetch the second URL for the course catalog
                         fetch(CATALOG_URL, {headers: {
                             "X-Requested-With":"XMLHTTPRequest",
                             "User-Agent":"NextThought OUCS Capstone 1920",
                             "Authorization": "Basic " + btoa(userName + ":" + passWord)}}).then(data => data.json()).then(data => {
                                 var {
-                                    //DCTitle, CourseNTIID
                                     Items
                                 } = data
                                 this.setState({courses:Items}) //This sets the catalog of courses
@@ -73,8 +67,7 @@ class CourseCatalog extends React.Component{
             const direction = urlParams.get('direction') || 'column'
 
             let isCol = direction == 'column' || direction == 'col'
-            // console.log("From didMount " + darkmode)
-            // console.log("From didMount " + direction)
+
             this.setState({darkmode,  direction});
 
         }
@@ -85,14 +78,16 @@ class CourseCatalog extends React.Component{
         const urlParams = new URLSearchParams(decodedURL);  
         const darkmode = urlParams.get('darkmode') || false       
         const direction = urlParams.get('direction') || 'column'
-
         let isCol = direction == 'column' || direction == 'col'
-        // console.log("From didMount " + darkmode)
-        // console.log("From didMount " + direction)
-        // console.log("From Render " + this.state.darkMode)
-        // console.log("From Render " + this.state.direction)
-
-        //if row set vals to this height='180px' width='100%'
+        const scroll = urlParams.get('scroll')
+        if (scroll == 'true'){
+            console.log("KEEP SCROLL BAR")
+            let style_stuff = ""
+        }
+        else{
+            console.log("LOSE THE SCROLL BAR")
+            let style_stuff = "<style>::-webkit-scrollbar {   display: none;    }</style>"
+        }
         let iframe_height;
         let iframe_width;
         if(direction =='row'){
@@ -107,7 +102,9 @@ class CourseCatalog extends React.Component{
 
 
         return(
-            <div className="App" id="catologcomponent" style={{backgroundColor:"#960207",paddingBottom:"15px;", paddingRight:"15px;"}}>
+            
+            <div className={styles.noScrollTrial} id="catologcomponent" style={{paddingBottom:"15px;", paddingRight:"15px;"}}>
+
                 {
                     
                 //Column Catalog dark mode
@@ -117,9 +114,9 @@ class CourseCatalog extends React.Component{
                     // this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=column&courseID='+BASE_URL+ course.href} height='245px' width='210px' 
                     // style={{'border-style': 'ridge'}}></iframe>)  
                 
-                //Row Catalog dark mode
-                    this.state.courses.map((course, index) => index>10? null : <> <iframe src = {`http://127.0.0.1:3006/build/index.html?darkmode=${darkmode}&direction=${direction}&courseID=`+BASE_URL+ course.href} height={iframe_height} width={iframe_width} 
-                    style={{'border-style': 'ridge', borderRadius: '20px', backgroundColor:"#960207"}}></iframe> </>) 
+                //Row Catalog dark mode-  only do 10 cards
+                    this.state.courses.map((course, index) => index>10? null : <> <iframe className={styles.noScrollTrial} src = {`http://127.0.0.1:3006/build/index.html?darkmode=${darkmode}&direction=${direction}&courseID=`+BASE_URL+ course.href} height={iframe_height} width={iframe_width} 
+                    style={{'border-style': 'ridge'}}></iframe> </>) 
 
                 //Row Catalog light mode
                     //this.state.courses.map(course => <iframe src = {'http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID='+BASE_URL+ course.href} height='180px' width='100%' 
@@ -142,35 +139,5 @@ class CourseCatalog extends React.Component{
       
 }
 
-
-
-// const CourseCatalog = (props) => (
-  
-//   <a href={props.courseURL} style={{textDecoration: 'none'}}>
-//   <div scrolling="no" style={{
-//     backgroundColor: props.darkMode ? 'gray':'white',
-//     maxHeight:"250px",
-//     height: '100%',
-//     padding: 8,
-//     maxWidth: props.direction == 'row' ? 'none' : "225px",
-//     display: 'flex',
-//     flexDirection: props.direction,
-//     boxShadow: '10px 10px 5px 0px rgba(181,181,181,1)'
-
-//   }}> 
-//     <img src={props.image} />
-
-//     <div style={{margin: 'auto 0'}}>
-//       <p style={{color: props.darkMode ? 'white' : 'gray', fontWeight: '500'}}>{props.title}</p> 
-//       <div style={{color: props.darkMode ? 'white' : 'gray', fontWeight: '700'}}>
-//         {props.description} 
-//       </div> 
-//     </div>
-
-//   </div></a>
-  
-
-
-//   )
 
 export default CourseCatalog
