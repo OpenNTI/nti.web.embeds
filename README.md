@@ -64,5 +64,13 @@ When these steps are done, the directory should look like this
      - If this does not work, run 'npm install' before 'npm build'
      
 8. Go to http://localhost:3000/. You should see this:
-![](images/catalogdark.png)
 ![](images/cataloglight.png)
+
+
+9. You can change the dark/light or row/grid mode by changing the url params-
+http://localhost:3000/?darkmode=true&direction=row
+http://localhost:3000/?darkmode=false&direction=row
+http://localhost:3000/?darkmode=true&direction=column
+http://localhost:3000/?darkmode=false&direction=column
+
+![](images/catalogdark.png)
