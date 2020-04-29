@@ -1,68 +1,68 @@
-# Repository for NextThought Plugin
+# nti.web.embeds
 
-## Available Scripts
+## Overview
+This branch is used for the development and maintenance of embedable web elements. These web elements include course cards and course catalogues. Customers can embed these elements into their own sites with the help of the builder component.
+## The Project
+This project works as a builder widget for an LMS. It takes as input from the user variables such as light/dark mode and row/ column layout and matches the course cards to those preferences. It also constructs an iframe that the user could take an embed into their own html page. Some course cards are loaded on to the page as a default to show the user what their selected preferneces would look like. Additionally, clicking on one of those course cards would lead the user to that course NextThought's website catalog.
+## Course card 
+The course card components display the title, image, and quick description of any available course. The component can be altered in terms of light or dark mode and row or column display. You can embed this component using the builder component. You can find the javascript file for the course card under /src/src/components/Card.js .
+## Catalogue 
+The catalogue component displays a list of many course cards. This component can also be altered in terms of light or dark mode. You can embed this component using the builder component. You can find the javascript file for the catalogue under /src/src/components/CourseCatalogue.js .
+## Builder 
+The builder component allows users to select what component they would like to embed and produce they code they need to insert into an HTML file. This is done by allowing users to input dark/light mode and orientation as well as a link (to the course for the course card or to multiple courses for the catalogue). You can find the javascript file for the catalogue under /src/src/components/Builder.js .
+## Prerequisites
+Before starting installation, make sure you have the following installed on your computer:
+- Node.js version v13.6.0
+- npm version 6.13.4
+## Installation
+You can set up this environment on your own computer by following these steps:
+1. Clone the repository
+2. Open the Node.js command prompt
+3. Navigate to the 'src' folder (relative path - nti.web.embeds/src)
+4. Run 'npm install'
+## How to run (User guide)
+1. Make sure to pull the latest version
 
-In the project directory, you can run:
+2. Make sure your package.json (found in src directory) file shows this.  *If it does now show the correct line in the boxed region, fix before continuing. **It will not work if you miss this!**
+![](images/step5.png)
 
-### `yarn start`
+3. Run the following commands in your command terminal:
+  - 'npm build' -or (Mac users)- 'npm run-script build' (First time only!)
+  - npm run start
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+4. Go to this link: http://127.0.0.1:3006/build/index.html?darkmode=false&direction=row&courseID=https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-2/CourseCatalogEntry 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+It should look like the following image
+![](images/runimage.png)
 
-### `yarn test`
+5. Make sure you keep the local server running as you follow the next steps (you can close out of the browser but don't stop the program).  This is the source that we need to pass to the iframes making up the catalog.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. You will have to clone the repo again, this time to a DIFFERENT directory than the one you've been using up till now and then fetch, checkout the catalog branch.  Below are the commands to do it:
 
-### `yarn build`
+   - mkdir CatalogApp
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - cd CatalogApp
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+   - git clone  https://github.com/NextThought/nti.web.embeds.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - git fetch origin catalog
 
-### `yarn eject`
+   - git checkout catalog
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   - cd .. 
+   
+When these steps are done, the directory should look like this
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](images/newdir.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+7. Open a second command terminal. **Do not terminate the first one; keep that one running. Open a fresh, second one.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+8. Navigate to the src folder. Build and run the app. You can do this by using the following commands:
+     - cd nti.web.embeds/src
+     - npm build
+     - npm run start
+     - If this does not work, run 'npm install' before 'npm build'
+     
+8. Go to http://localhost:3000/. You should see this:
+![](images/catalogdark.png)
+![](images/cataloglight.png)
