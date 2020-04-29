@@ -69,8 +69,12 @@ When these steps are done, the directory should look like this
 
 9. You can change the dark/light or row/grid mode by changing the url params-
 http://localhost:3000/?darkmode=true&direction=row
+ 
 http://localhost:3000/?darkmode=false&direction=row
-http://localhost:3000/?darkmode=true&direction=column
-http://localhost:3000/?darkmode=false&direction=column
+ 
+http://localhost:3000/?darkmode=true&direction=column\
+ 
+http://localhost:3000/?darkmode=false&direction=column 
+
 
 ![](images/catalogdark.png)
