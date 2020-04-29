@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        main { 
+            font-family: Helvetica, "sans-serif";
+            background-color: #e8ffef;
+            background-blend-mode: lighten;
+            padding: 10px;
+            margin: 10px;
+            min-width: 715px;
+            width: 60%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 10px 10px 8px grey;
+        }
+    </style>
+    </head>
+	<body onload="updateExtract()">
+	
+	<script>
+		var courseURL=""
+		var style=""
+		var mode=""
+		var height=""
+		var width=""
+		var iframe = ""
+		var styling = ""
+
+		function courseURL_Entered(val) {
+			courseURL = val;
+			updateExtract();
+		}
+		
+		function styleRadioClick(sourceRad) {
+			var rowRad = document.getElementById("rowRad");
+			var colRad = document.getElementById("colRad");
+			
+			if (sourceRad == rowRad) {
+				if (rowRad.checked == true) {
+					colRad.checked = false;
+					style="row";
+					height="500px";
+					width="910px";
+				}
+				else {
+					colRad.checked = true;
+					style="column";
+					height="490px";
+					width="910px";
+				}
+			}
+			else {
+				if (colRad.checked == true) {
+					rowRad.checked = false;
+					style = "column";
+					height="490px";
+					width="910px";
+				}
+				else {
+					rowRad.checked = true;
+					style = "row";
+					height="500px";
+					width="910px";
+				}
+			}
+			updateExtract();
+		}
+		
+		function modeRadioClick(sourceRad) {
+			var lightRad = document.getElementById("lightRad"); 
+			var darkRad = document.getElementById("darkRad");
+			
+			if (sourceRad == lightRad) {
+				if (lightRad.checked == true) {
+					darkRad.checked = false;
+					mode="false";
+					styling="border-style: ridge;";
+				}
+				else {
+					darkRad.checked = true;
+					styling="border-style: none;";
+
+					mode="true";
+				}
+			}
+			else {
+				if (darkRad.checked == true) {
+					lightRad.checked = false;
+					styling="border-style: none; ";
+					mode = "true";
+				}
+				else {
+					lightRad.checked = true;
+					styling="border-style: ridge; ";
+					mode = "false";
+				}
+			}
+			updateExtract();
+		}
+		
+		function updateExtract() {
+			var extract = document.getElementById("extract");
+			//var text="&lt;iframe src = 'http://127.0.0.1:3006/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' style=\"height:- " + height + "px;\" width='100%' &gt; &lt;/iframe&gt";
+			//var text="&lt;iframe src = 'http://127.0.0.1:3006/build/index.html?darkmode=" + mode + "&direction=" + style + "&courseID=" + courseURL + "' height:\" "+ height +" \"+ \"width=  +width + &gt; &lt;/iframe&gt";
+            // <iframe src = 'http://127.0.0.1:3000/?darkmode=true&direction=row' height='500px' width='910px' style='border-style: none' sandbox="allow-scripts allow-top-navigation"> </iframe>
+
+			var text = `&lt;iframe  src = 'http://127.0.0.1:3000/?darkmode=${mode}&direction=${style}' height='${height}' width='${width}' style='${styling}'  &gt; &lt;/iframe&gt`
+			extract.innerHTML = text;
+		}
+		</script>
+
+<div> 
+			<div>
+				<main >
+					<h1>Course Card Builder</h1>
+					<hr/>
+					<br/>
+					<h3>Style</h3>
+					<input type="radio" value="row" id="rowRad" onchange="styleRadioClick(this)">
+					<label>Rows</label>
+					<input type="radio" value="col" id="colRad" onchange="styleRadioClick(this)">
+					<label>Grid</label>
+					<br/>
+					<h3>Mode</h3>
+					<input type="radio" value="light" id="lightRad" onchange="modeRadioClick(this)">
+					<label>Light</label>
+					<input type="radio" value="dark" id="darkRad" onchange="modeRadioClick(this)">
+					<label>Dark</label>
+					<br/>
+					<h3>Copy the text below into your page. ...</h3>
+					<textarea id="extract" style="width: 95%;"></textarea>
+				</main>
+			</div>
+		</div>
+	</body>
+</html>
+ 

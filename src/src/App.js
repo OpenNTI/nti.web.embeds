@@ -8,8 +8,6 @@ const REQ_URL = BASE_URL+'/dataserver2/++etc++hostsites/alpha.nextthought.com/++
 const IMAGE_NAME = 'contentpackage-landing-232x170.png'
 var userName = "slidingsteven";
 var passWord = "Capstone2020";
-//const REQ_IMG_URL = BASE_URL+'https://alpha.nextthought.comcontent/sites/alpha.nextthought.com/Courses/DefaultAPICreated/OUCS-1/presentation-assets/webapp/v1/contentpackage-landing-232x170.png'
-//https://alpha.nextthought.com/dataserver2/++etc++hostsites/alpha.nextthought.com/++etc++site/Courses/DefaultAPICreated/OUCS-1/CourseCatalogEntry
 class App extends React.Component {
 
   constructor(props){
@@ -28,9 +26,7 @@ class App extends React.Component {
 
   componentDidMount = () => {
     let decodedURL = decodeURIComponent(window.location.search);
-    console.log("After decodeURIComponent--- " + decodedURL)
     const urlParams = new URLSearchParams(decodedURL);      
-    console.log("After URLSearchParams--- " + urlParams)
     let nameCleaned = decodedURL.toString().split("courseID=")[1];
     const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
     const HREF_SPECIFIC_TYPE = '__nti_object_href';
@@ -64,57 +60,22 @@ class App extends React.Component {
       const courseId = urlParams.get('courseID') || ''
       const courseURL = getRouteForCatalogEntry(courseCatalog);
       console.log(courseCatalog)
-
-      //ASSIGNING THE IMAGE,  THIS IS WHAT IS WRONG
-      //let source; //BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME//source for image
-      // if(courseCatalog['PlatformPresentationResources'][0]==undefined ||courseCatalog['PlatformPresentationResources'][0]['href']==undefined){
-      //     source=defaultClassCard
-      // } else {
-      //     //source= BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
-      //     let newsrc = BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
-      //     fetch(newsrc).then(function(response) {
-      //       console.log("CHECKING IF VALID")
-      //       console.log(response.status); // returns 200
-      //       if (response.status.toString() == '404'){
-      //         console.log("WAS 404")
-      //         source=defaultClassCard
-      //         console.log("TRY TO CHANGE SOURCE " + source)
-      //       }
-      //       else{
-      //         console.log("WAS 200")
-      //         source = newsrc
-      //         console.log("SOURCE CHANGE TO " + source)
-      //       }
-      //     });
-      //   }
-
-        try{
-                    
-                    var source= BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
-                    let newsrc = BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
-                    fetch(newsrc).then(function(response) {
-                      console.log("CHECKING IF VALID")
-                      console.log(response.status); // returns 200
-                      //if (response.status.toString() == '404'){
-                      if(response.status == 200){
-                        console.log("WAS 200")
-                        source = newsrc
-                        console.log("SOURCE CHANGE TO " + source)
-
-                      }
-                      else{
-                        console.log("WAS 404")
-                        source=defaultClassCard
-                        console.log("TRY TO CHANGE SOURCE " + source)
-                      }
-                    });
+      try{
+          var source= BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
+          let newsrc = BASE_URL+ courseCatalog['PlatformPresentationResources'][0]['href']+IMAGE_NAME
+          fetch(newsrc).then(function(response) {
+            console.log(response.status); // returns 200
+            if(response.status == 200){
+              source = newsrc
+            }
+            else{
+              source=defaultClassCard
+            }
+          });
         }
         catch(err){
           var source=defaultClassCard
-
         }
-      console.log("SOURCE " +source)
-
       let cardTitle =''
       if(courseCatalog['ProviderDisplayName']==undefined) 
           cardTitle="not found"
